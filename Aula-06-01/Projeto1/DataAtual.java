@@ -1,4 +1,4 @@
-import java.util.Date; //importacao da classe Date
+import java.util.Date;
 
 	public class DataAtual{
 
