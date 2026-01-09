@@ -44,12 +44,12 @@ public class JogadorBasquete extends Atleta{
 	}
 
 	@Override
-	protected int calculoPatrocinio() {
+	protected Double calculoPatrocinio() {
 		double pagamento = calcularPagamento();          
 	    double bonusGols  = getQntPontos() * 3;
 	    double resultado = (pagamento * 0.20) + (bonusGols * 0.20);
 
-	    return (int) resultado;
+	    return (double) resultado;
 	}
 
 

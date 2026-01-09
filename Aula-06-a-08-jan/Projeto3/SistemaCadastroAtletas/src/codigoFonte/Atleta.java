@@ -9,7 +9,7 @@ public abstract class Atleta{
 	//aqui polimorfismo- obrigamos os filhos a implementar o @Override com seus retornos (para esse caso, pois pode ser void)
 	protected abstract Double calcularPagamento();//assinatura
 	protected abstract int qtdTreinoSemana();
-	protected abstract int calculoPatrocinio();
+	protected abstract Double calculoPatrocinio();
 	
 	//aqui temos herança 
 	public void verificaNumeroNegativo(Double valor) {
