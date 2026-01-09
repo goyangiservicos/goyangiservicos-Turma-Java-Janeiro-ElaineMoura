@@ -30,15 +30,16 @@ public class Principal {
 		jogadorFutsalObjeto.setQtdGols(entradaDeDados.nextInt());
 		
 		System.out.println("O valor: "+jogadorFutsalObjeto.calcularPagamento());
-		
+		System.out.println("O valor: "+jogadorFutsalObjeto.calculoPatrocinio());
 		
 		System.out.println("Nome do jogador(a) é: " + jogadorFutsalObjeto.getNomeAtleta());
 		System.out.println("A idade do jogador(a) é: " +jogadorFutsalObjeto.getIdade () );
 		System.out.println("Perna mais forte do jogador(a) é: " + jogadorFutsalObjeto.getPernaMaisForte());
 		System.out.println("Valor por gols do jogador(a) é: " + jogadorFutsalObjeto.getValorPorGols());
-		System.out.println("Valor por gols do jogador(a) é: " + jogadorFutsalObjeto.getQtdGols());
-		System.out.println("O valor: " + jogadorFutsalObjeto.calcularPagamento());
-		System.out.println("Quantidade treinos semana: " + jogadorBasqueteObjeto.qtdTreinoSemana());	
+		System.out.println("Quantidade de gols do jogador(a) é: " + jogadorFutsalObjeto.getQtdGols());
+		System.out.println("O valor do calculo de pagamento é: " + jogadorFutsalObjeto.calcularPagamento());
+		System.out.println("Quantidade treinos semana: " + jogadorFutsalObjeto.qtdTreinoSemana());	
+		System.out.println("Valor calculo patrocinio: " + jogadorFutsalObjeto.calculoPatrocinio());	
 	        }
 	
 		if(opcao.equals("B")){
@@ -57,16 +58,15 @@ public class Principal {
 		System.out.println("Digite quantidade de gols marcardos: ");
 		jogadorBasqueteObjeto.setQntPontos(entradaDeDados.nextInt());
 		
-		System.out.println("O valor: "+jogadorBasqueteObjeto.calcularPagamento());
-		
-		
+			
 		System.out.println("Nome do jogador(a) é: " + jogadorBasqueteObjeto.getNomeAtleta() );
 		System.out.println("A idade do jogador(a) é: " + jogadorBasqueteObjeto.getIdade() );
 		System.out.println("Braco mais forte do jogador(a) é: " + jogadorBasqueteObjeto.getBracoMaisForte());
 		System.out.println("Valor por pontos do jogador(a) é: " + jogadorBasqueteObjeto.getValorPorPontos());
-		System.out.println("Valor por gols do jogador(a) é: " + jogadorBasqueteObjeto.getQntPontos());
-		System.out.println("O valor: " + jogadorBasqueteObjeto.calcularPagamento());
+		System.out.println("Valor por pontos do jogador(a) é: " + jogadorBasqueteObjeto.getQntPontos());
+		System.out.println("O valor do salario: " + jogadorBasqueteObjeto.calcularPagamento());
 		System.out.println("Quantidade treinos semana: " + jogadorBasqueteObjeto.qtdTreinoSemana());
+		System.out.println("Valor calculo patrocinio: " + jogadorBasqueteObjeto.calculoPatrocinio());	
 		}
 	System.out.println("#################Fim do Cadastro de Atletas############");
 	}
