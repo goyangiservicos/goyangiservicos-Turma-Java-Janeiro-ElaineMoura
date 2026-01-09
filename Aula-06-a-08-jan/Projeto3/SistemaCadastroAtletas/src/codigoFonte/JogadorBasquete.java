@@ -4,7 +4,7 @@ public class JogadorBasquete extends Atleta{
 
 	private String bracoMaisForte;
 	private Double valorPorPontos;
-
+	private int qntPontos;
 	public String getBracoMaisForte() {
 		return bracoMaisForte;
 	}
@@ -18,9 +18,31 @@ public class JogadorBasquete extends Atleta{
 	}
 	
 	public void setValorPorPontos(Double valorPorPontosChegando) {
-		Utilitario util = new Utilitario();
-		util.verificaNumeroNegativo(valorPorPontosChegando);
+	    verificaNumeroNegativo(valorPorPontosChegando);
 		this.valorPorPontos = valorPorPontosChegando;
 	}
+
+	@Override
+	protected Double calcularPagamento() {
+	
+		return valorPorPontos*30;
+	}
+
+	@Override
+	protected int qtdTreinoSemana() {
+		
+		return 3;
+	}
+
+	public int getQntPontos() {
+		return qntPontos;
+	}
+
+	public void setQntPontos(int qntPontos) {
+		verificaNumeroNegativo((double)qntPontos);
+		this.qntPontos = qntPontos;
+	}
+
+
 }
 

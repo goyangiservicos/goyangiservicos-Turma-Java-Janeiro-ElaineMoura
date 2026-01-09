@@ -4,7 +4,7 @@ public class JogadorFutsal extends Atleta{
 	
 	private String pernaMaisForte;
 	private Double valorPorGols;
-	
+	private int qtdGols;
 	public String getPernaMaisForte() {
 		return pernaMaisForte;
 	}
@@ -18,9 +18,32 @@ public class JogadorFutsal extends Atleta{
 	}
 	
 	public void setValorPorGols(Double valorPorGolsChegando) {
-		Utilitario util = new Utilitario();
-		util.verificaNumeroNegativo(valorPorGolsChegando);
+		verificaNumeroNegativo(valorPorGolsChegando);
 		this.valorPorGols = valorPorGolsChegando;
 	
 	}
+
+	@Override
+	protected Double calcularPagamento() {
+		
+		return valorPorGols*50;
+	}
+
+	@Override
+	protected int qtdTreinoSemana() {
+		
+		return 5;
+	}
+
+	public int getQtdGols() {
+		return qtdGols;
+	}
+
+	public void setQtdGols(int qtdGols) {
+		verificaNumeroNegativo((double)qtdGols);
+		this.qtdGols = qtdGols;
+	}
+
+
+
 }
