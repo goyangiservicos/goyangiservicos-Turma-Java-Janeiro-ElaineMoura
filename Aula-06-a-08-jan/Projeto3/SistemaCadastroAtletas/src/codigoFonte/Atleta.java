@@ -4,8 +4,15 @@ public abstract class Atleta{
 
 	private String nomeAtleta;
 	private int idade;
+	private Double patrocinio;
+	private Double salario;
 	
-	
+	public Double getPatrocinio() {
+		return patrocinio;
+	}
+	public void setPatrocinio(Double patrocinio) {
+		this.patrocinio = patrocinio;
+	}
 	//aqui polimorfismo- obrigamos os filhos a implementar o @Override com seus retornos (para esse caso, pois pode ser void)
 	protected abstract Double calcularPagamento();//assinatura
 	protected abstract int qtdTreinoSemana();
@@ -36,6 +43,12 @@ public abstract class Atleta{
 		}
 		
 		this.idade = idadeChegando;
+	}
+	public Double getSalario() {
+		return salario;
+	}
+	public void setSalario(Double salario) {
+		this.salario = salario;
 	}
 	
 };

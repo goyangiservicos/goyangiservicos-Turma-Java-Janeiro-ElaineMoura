@@ -46,12 +46,16 @@ public class JogadorFutsal extends Atleta{
 
 	@Override
 	protected Double calculoPatrocinio() {
-		double pagamento = calcularPagamento();          
-	    double bonusGols  = getQtdGols() * 4;
-	    double resultado = (pagamento * 0.30) + (bonusGols * 0.30);
+		Double vintePorCentoSalario = getSalario() * 0.2;
+		Double vintePorCentoQtdPontosx = (qtdGols * 0.2) * 3;
+		//double pagamento = calcularPagamento();          
+	   // double bonusGols  = getQtdGols() * 4;
+	    //double resultado = (pagamento * 0.30) + (bonusGols * 0.30);
 
-	    return (double) resultado;
+	    return vintePorCentoSalario + vintePorCentoQtdPontosx;
 	}
+
+
 
 
 

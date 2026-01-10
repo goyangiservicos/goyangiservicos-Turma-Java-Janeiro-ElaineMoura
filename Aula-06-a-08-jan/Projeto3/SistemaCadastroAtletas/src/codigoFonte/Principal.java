@@ -1,4 +1,6 @@
 package codigoFonte;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
@@ -6,14 +8,19 @@ public class Principal {
 	public static void main(String[] args){
 		System.out.println("#################Inicio Cadastro de Atletas############");
 		Scanner entradaDeDados = new Scanner(System.in);
-
-		JogadorBasquete jogadorBasqueteObjeto = new JogadorBasquete(); 
-		JogadorFutsal jogadorFutsalObjeto = new JogadorFutsal();
-
+//JogadorFutsal jogadorFutsalObjeto = new JogadorFutsal(); quando feito fora, sempre vai sobrescrever na lista nao é o ideal.
+		
+		
+		String opcaoNovoCadastro;
+		
+		List<JogadorFutsal> jogadoresFutsal = new ArrayList<JogadorFutsal>();//lista dos cadastrados
+		List<JogadorBasquete> jogadoresBasquete = new ArrayList<JogadorBasquete>();
+		do {
 		System.out.println("Digite F para jogador(a) de futsal ou B para jogador(a) de basquete");
 		String opcao = entradaDeDados.next();
 		
 		if(opcao.equals("F")){
+		JogadorFutsal jogadorFutsalObjeto = new JogadorFutsal();//sendo iniciado aqui para ser um obj novo e nao sobrescrever o anterior
 		System.out.println("Digite o nome do jogador(a) de Futsal: ");
 		jogadorFutsalObjeto.setNomeAtleta(entradaDeDados.next());
 		
@@ -29,6 +36,11 @@ public class Principal {
 		System.out.println("Digite quantidade de gols marcardos: ");
 		jogadorFutsalObjeto.setQtdGols(entradaDeDados.nextInt());
 		
+		jogadorFutsalObjeto.setSalario(jogadorFutsalObjeto.calcularPagamento());
+		jogadorFutsalObjeto.setPatrocinio(jogadorFutsalObjeto.calculoPatrocinio());
+		
+		jogadoresFutsal.add(jogadorFutsalObjeto); //jogar na lista
+		
 		System.out.println("O valor: "+jogadorFutsalObjeto.calcularPagamento());
 		System.out.println("O valor: "+jogadorFutsalObjeto.calculoPatrocinio());
 		
@@ -43,7 +55,9 @@ public class Principal {
 	        }
 	
 		if(opcao.equals("B")){
+	    JogadorBasquete jogadorBasqueteObjeto = new JogadorBasquete(); 
 		System.out.println("Digite o nome do jogador(a) de Basquete: ");
+		
 		jogadorBasqueteObjeto.setNomeAtleta(entradaDeDados.next());
 		
 		System.out.println("Digite a idade do jogador(a) de Basquete: ");
@@ -52,12 +66,16 @@ public class Principal {
 		System.out.println("Digite a braco mais forte do jogador(a) de Basquete: ");
 		jogadorBasqueteObjeto.setBracoMaisForte(entradaDeDados.next());
 
-		System.out.println("Digite o valor por gol do Basquete: ");
+		System.out.println("Digite o valor por ponto do Basquete: ");
 		jogadorBasqueteObjeto.setValorPorPontos(entradaDeDados.nextDouble()); 
 		
-		System.out.println("Digite quantidade de gols marcardos: ");
+		System.out.println("Digite quantidade de pontos marcardos: ");
 		jogadorBasqueteObjeto.setQntPontos(entradaDeDados.nextInt());
 		
+		jogadorBasqueteObjeto.setSalario(jogadorBasqueteObjeto.calcularPagamento());
+		jogadorBasqueteObjeto.setPatrocinio(jogadorBasqueteObjeto.calculoPatrocinio());
+		
+		jogadoresBasquete.add(jogadorBasqueteObjeto); 
 			
 		System.out.println("Nome do jogador(a) é: " + jogadorBasqueteObjeto.getNomeAtleta() );
 		System.out.println("A idade do jogador(a) é: " + jogadorBasqueteObjeto.getIdade() );
@@ -68,9 +86,13 @@ public class Principal {
 		System.out.println("Quantidade treinos semana: " + jogadorBasqueteObjeto.qtdTreinoSemana());
 		System.out.println("Valor calculo patrocinio: " + jogadorBasqueteObjeto.calculoPatrocinio());	
 		}
+		
+		System.out.println("Deseja cadastrar mais um atleta (S/N)?");
+		opcaoNovoCadastro = entradaDeDados.next();
+		
+		}while(opcaoNovoCadastro.equals("S"));
+		
 	System.out.println("#################Fim do Cadastro de Atletas############");
 	}
-
-
 
 } 

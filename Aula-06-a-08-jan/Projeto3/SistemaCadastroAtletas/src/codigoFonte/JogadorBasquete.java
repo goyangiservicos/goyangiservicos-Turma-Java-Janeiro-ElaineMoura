@@ -45,13 +45,16 @@ public class JogadorBasquete extends Atleta{
 
 	@Override
 	protected Double calculoPatrocinio() {
-		double pagamento = calcularPagamento();          
-	    double bonusGols  = getQntPontos() * 3;
-	    double resultado = (pagamento * 0.20) + (bonusGols * 0.20);
-
-	    return (double) resultado;
+		Double trintaPorCentoSalario = getSalario() * 0.3;
+		Double trintaPorCentoQtdPontosxTres = (qntPontos * 0.3) * 4;
+		  return trintaPorCentoSalario + trintaPorCentoQtdPontosxTres;
 	}
 
 
+	
+	
+	
+	
+	
 }
 
