@@ -41,18 +41,7 @@ public class Principal {
 		
 		jogadoresFutsal.add(jogadorFutsalObjeto); //jogar na lista
 		
-		System.out.println("O valor: "+jogadorFutsalObjeto.calcularPagamento());
-		System.out.println("O valor: "+jogadorFutsalObjeto.calculoPatrocinio());
-		
-		System.out.println("Nome do jogador(a) é: " + jogadorFutsalObjeto.getNomeAtleta());
-		System.out.println("A idade do jogador(a) é: " +jogadorFutsalObjeto.getIdade () );
-		System.out.println("Perna mais forte do jogador(a) é: " + jogadorFutsalObjeto.getPernaMaisForte());
-		System.out.println("Valor por gols do jogador(a) é: " + jogadorFutsalObjeto.getValorPorGols());
-		System.out.println("Quantidade de gols do jogador(a) é: " + jogadorFutsalObjeto.getQtdGols());
-		System.out.println("O valor do calculo de pagamento é: " + jogadorFutsalObjeto.calcularPagamento());
-		System.out.println("Quantidade treinos semana: " + jogadorFutsalObjeto.qtdTreinoSemana());	
-		System.out.println("Valor calculo patrocinio: " + jogadorFutsalObjeto.calculoPatrocinio());	
-	        }
+		    }
 	
 		if(opcao.equals("B")){
 	    JogadorBasquete jogadorBasqueteObjeto = new JogadorBasquete(); 
@@ -91,7 +80,30 @@ public class Principal {
 		opcaoNovoCadastro = entradaDeDados.next();
 		
 		}while(opcaoNovoCadastro.equals("S"));
+		System.out.println("#######LISTA DE JOGADORES DE FUTSAL CADASTRADOS#######");
+		for (JogadorFutsal jogadorFutsalLista: jogadoresFutsal) {
+			System.out.println("nome do jogador de futsal: " + jogadorFutsalLista.getNomeAtleta());
+			System.out.println("Idade do jogador de futsal: " + jogadorFutsalLista.getIdade());
+			System.out.println("Perna mais forte do jogador de futsal: " + jogadorFutsalLista.getPernaMaisForte());
+			System.out.println("Quantidadede gols do jogador de futsal: " + jogadorFutsalLista.getQtdGols());
+			System.out.println("Idade do jogador de futsal: " + jogadorFutsalLista.getSalario());
+			System.out.println("Valor do patrocinio: " + jogadorFutsalLista.getPatrocinio());	
 		
+			System.out.println("-------------------------------------------");
+		}
+		
+		System.out.println("#######LISTA DE JOGADORES DE BASQUETE CADASTRADOS#######");
+		// Tipo do obj que vai tratar no for - nome do obj que será manipulado -- lista que vai ser escrita 
+		for (JogadorBasquete jogadorBasquetelLista: jogadoresBasquete) {
+			System.out.println("nome do jogador de Basquete: " + jogadorBasquetelLista.getNomeAtleta());
+			System.out.println("Idade do jogador de Basquete: " + jogadorBasquetelLista.getIdade());
+			System.out.println("Perna mais forte do jogador de Basquete: " + jogadorBasquetelLista.getIdade());
+			System.out.println("Quantidadede pontos do jogador de Basquete: " + jogadorBasquetelLista.getQntPontos());
+			System.out.println("Idade do jogador de Basquete: " + jogadorBasquetelLista.getSalario());
+			System.out.println("Valor do patrocinio: " + jogadorBasquetelLista.getPatrocinio());		
+			
+			System.out.println("-------------------------------------------");
+		}
 	System.out.println("#################Fim do Cadastro de Atletas############");
 	}
 
