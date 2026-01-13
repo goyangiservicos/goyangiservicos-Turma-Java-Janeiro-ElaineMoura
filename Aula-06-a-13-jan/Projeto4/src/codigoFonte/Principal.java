@@ -163,6 +163,12 @@ public class Principal {
 		} else {
 			try {
 				numeroInteiro = Integer.parseInt(numeroString);
+				
+				if (numeroInteiro == 0) {
+					JOptionPane.showMessageDialog(null, "Zero nao é permitido");
+					numeroInteiro = 0;
+				}
+				
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Apenas numeros");
 				System.out.println("O valor:" + e.getMessage() + "nao pode ser convertido para inteiro");
@@ -181,6 +187,11 @@ public class Principal {
 
 			try {
 				numeroDecimal = Double.parseDouble(numeroString);
+				
+				if (numeroDecimal == 0.0) {
+					JOptionPane.showMessageDialog(null, "Zero nao é permitido");
+					numeroDecimal = 0.0;
+				}
 
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Apenas Numeros.");// Comunica para o usuario
