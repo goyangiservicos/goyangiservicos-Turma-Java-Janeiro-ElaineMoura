@@ -49,7 +49,7 @@ public class Principal {
 					}
 
 				} while (!letraOuNao);
-				
+
 				int idadeTemporaria;
 				do {
 
@@ -165,90 +165,53 @@ public class Principal {
 			opcao = JOptionPane.showInputDialog("Deseja cadastrar mais um atleta (S/N)?");
 
 		} while (opcao.equalsIgnoreCase("S"));
-		
-		
+
 		StringBuilder mensagem = new StringBuilder();
-		
+
 		mensagem.append("#######LISTA DE JOGADORES CADASTRADOS#######\n");
-		
+
 		for (JogadorFutsal jogadorFutsalLista : jogadoresFutsal) {
-		
-			mensagem.append("nome do jogador de futsal: ")
-			.append(jogadorFutsalLista.getNomeAtleta())
-			.append("\n");
-			
-			mensagem.append("Idade do jogador de futsal: ")
-			.append(jogadorFutsalLista.getIdade())
-			.append("\n");
-			
+
+			mensagem.append("nome do jogador de futsal: ").append(jogadorFutsalLista.getNomeAtleta()).append("\n");
+
+			mensagem.append("Idade do jogador de futsal: ").append(jogadorFutsalLista.getIdade()).append("\n");
+
 			mensagem.append("------------------------------------\n");
-			
-			mensagem.append("Perna mais forte do jogador de futsal: ")
-			.append(jogadorFutsalLista.getPernaMaisForte())
-			.append("\n");
-			
-			mensagem.append("Quantidadede gols do jogador de futsal: ")
-			.append(jogadorFutsalLista.getQtdGols())
-			.append("\n");
-						
-			mensagem.append("Salario do jogador de futsal: ")
-			.append(jogadorFutsalLista.getSalario())
-			.append("\n");
-			
-			mensagem.append("Valor do patrocinio: ")
-			.append(jogadorFutsalLista.getPatrocinio())
-			.append("\n");
-			
+
+			mensagem.append("Perna mais forte do jogador de futsal: ").append(jogadorFutsalLista.getPernaMaisForte())
+					.append("\n");
+
+			mensagem.append("Quantidadede gols do jogador de futsal: ").append(jogadorFutsalLista.getQtdGols())
+					.append("\n");
+
+			mensagem.append("Salario do jogador de futsal: ").append(jogadorFutsalLista.getSalario()).append("\n");
+
+			mensagem.append("Valor do patrocinio: ").append(jogadorFutsalLista.getPatrocinio()).append("\n");
+
 		}
-		
+
 		mensagem.append("------------------------------------\n");
-		
+
 		for (JogadorBasquete jogadorBasquetelLista : jogadoresBasquete) {
-			
-			mensagem.append("nome do jogador de Basquete: ")
-			.append(jogadorBasquetelLista.getNomeAtleta())
-			.append("\n");
-			
-			mensagem.append("Idade do jogador de Basquete: ")
-			.append(jogadorBasquetelLista.getIdade())
-			.append("\n");
-			
+
+			mensagem.append("nome do jogador de Basquete: ").append(jogadorBasquetelLista.getNomeAtleta()).append("\n");
+
+			mensagem.append("Idade do jogador de Basquete: ").append(jogadorBasquetelLista.getIdade()).append("\n");
+
 			mensagem.append("------------------------------------\n");
-			
+
 			mensagem.append("Perna mais forte do jogador de Basquete: ")
-			.append(jogadorBasquetelLista.getBracoMaisForte())
-			.append("\n");
-			
-			mensagem.append("Quantidadede gols do jogador de Basquete: ")
-			.append(jogadorBasquetelLista.getQntPontos())
-			.append("\n");
-						
-			mensagem.append("Salario do jogador de Basquete: ")
-			.append(jogadorBasquetelLista.getSalario())
-			.append("\n");
-			
-			mensagem.append("Valor do patrocinio: ")
-			.append(jogadorBasquetelLista.getPatrocinio())
-			.append("\n");
+					.append(jogadorBasquetelLista.getBracoMaisForte()).append("\n");
+
+			mensagem.append("Quantidadede gols do jogador de Basquete: ").append(jogadorBasquetelLista.getQntPontos())
+					.append("\n");
+
+			mensagem.append("Salario do jogador de Basquete: ").append(jogadorBasquetelLista.getSalario()).append("\n");
+
+			mensagem.append("Valor do patrocinio: ").append(jogadorBasquetelLista.getPatrocinio()).append("\n");
 		}
 		mensagem.append("#######FIM DA LISTA DE JOGADORES CADASTRADOS#######\n");
 		JOptionPane.showMessageDialog(null, mensagem.toString(), "Lista de atletas", JOptionPane.INFORMATION_MESSAGE);
-		
-		
-		System.out.println("#######LISTA DE JOGADORES DE BASQUETE CADASTRADOS#######");
-		// Tipo do obj que vai tratar no for - nome do obj que será manipulado -- lista
-		// que vai ser escrita
-		for (JogadorBasquete jogadorBasquetelLista : jogadoresBasquete) {
-			System.out.println("nome do jogador de Basquete: " + jogadorBasquetelLista.getNomeAtleta());
-			System.out.println("Idade do jogador de Basquete: " + jogadorBasquetelLista.getIdade());
-			System.out.println("Perna mais forte do jogador de Basquete: " + jogadorBasquetelLista.getIdade());
-			System.out.println("Quantidadede pontos do jogador de Basquete: " + jogadorBasquetelLista.getQntPontos());
-			System.out.println("Idade do jogador de Basquete: " + jogadorBasquetelLista.getSalario());
-			System.out.println("Valor do patrocinio: " + jogadorBasquetelLista.getPatrocinio());
-
-			System.out.println("-------------------------------------------");
-		}
-		System.out.println("#################Fim do Cadastro de Atletas############");
 
 	}
 
