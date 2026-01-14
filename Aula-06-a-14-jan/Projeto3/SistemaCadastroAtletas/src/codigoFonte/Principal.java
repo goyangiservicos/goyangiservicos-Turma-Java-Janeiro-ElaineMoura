@@ -2,39 +2,36 @@ package codigoFonte;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Principal {
 
 	public static void main(String[] args){
+		
 		System.out.println("#################Inicio Cadastro de Atletas############");
-		Scanner entradaDeDados = new Scanner(System.in);
-//JogadorFutsal jogadorFutsalObjeto = new JogadorFutsal(); quando feito fora, sempre vai sobrescrever na lista nao é o ideal.
+		//Scanner entradaDeDados = new Scanner(System.in);
+		String opcao;
+        //JogadorFutsal jogadorFutsalObjeto = new JogadorFutsal(); quando feito fora, sempre vai sobrescrever na lista nao é o ideal.
 		
-		
-		String opcaoNovoCadastro;
-		
+		/*	
 		List<JogadorFutsal> jogadoresFutsal = new ArrayList<JogadorFutsal>();//lista dos cadastrados
 		List<JogadorBasquete> jogadoresBasquete = new ArrayList<JogadorBasquete>();
 		do {
-		System.out.println("Digite F para jogador(a) de futsal ou B para jogador(a) de basquete");
-		String opcao = entradaDeDados.next();
+		
+		String opcaoCadastro = JOptionPane.showInputDialog("Digite F para jogador(a) de futsal ou B para jogador(a) de basquete");
 		
 		if(opcao.equals("F")){
 		JogadorFutsal jogadorFutsalObjeto = new JogadorFutsal();//sendo iniciado aqui para ser um obj novo e nao sobrescrever o anterior
-		System.out.println("Digite o nome do jogador(a) de Futsal: ");
-		jogadorFutsalObjeto.setNomeAtleta(entradaDeDados.next());
 		
-		System.out.println("Digite a idade do jogador(a) de Futsal: ");
-		jogadorFutsalObjeto.setIdade(entradaDeDados.nextInt());
+		jogadorFutsalObjeto.setNomeAtleta(JOptionPane.showInputDialog("Digite o nome do jogador(a) de Futsal:"));
+				
+		jogadorFutsalObjeto.setIdade(JOptionPane.showInputDialog("Digite a idade do jogador(a) de Futsal: "));
 		
-		System.out.println("Digite a perna mais forte do jogador(a) de Futsal: ");
-		jogadorFutsalObjeto.setPernaMaisForte(entradaDeDados.next());
+		jogadorFutsalObjeto.setPernaMaisForte(JOptionPane.showInputDialog("Digite a perna mais forte do jogador(a) de Futsal: "));
+				
+		jogadorFutsalObjeto.setValorPorGols(JOptionPane.showInputDialog("Digite o valor por gol do jogador(a): "));
 		
-		System.out.println("Digite o valor por gol do jogador(a): ");
-		jogadorFutsalObjeto.setValorPorGols(entradaDeDados.nextDouble());
-		
-		System.out.println("Digite quantidade de gols marcardos: ");
-		jogadorFutsalObjeto.setQtdGols(entradaDeDados.nextInt());
+		jogadorFutsalObjeto.setQtdGols(JOptionPane.showInputDialog("Digite quantidade de gols marcardos: "));
 		
 		jogadorFutsalObjeto.setSalario(jogadorFutsalObjeto.calcularPagamento());
 		jogadorFutsalObjeto.setPatrocinio(jogadorFutsalObjeto.calculoPatrocinio());
@@ -45,35 +42,23 @@ public class Principal {
 	
 		if(opcao.equals("B")){
 	    JogadorBasquete jogadorBasqueteObjeto = new JogadorBasquete(); 
-		System.out.println("Digite o nome do jogador(a) de Basquete: ");
+		//System.out.println("Digite o nome do jogador(a) de Basquete: ");
 		
-		jogadorBasqueteObjeto.setNomeAtleta(entradaDeDados.next());
+		jogadorBasqueteObjeto.setNomeAtleta(JOptionPane.showInputDialog("Digite o nome do jogador(a) de Basquete: "));
 		
-		System.out.println("Digite a idade do jogador(a) de Basquete: ");
-		jogadorBasqueteObjeto.setIdade(entradaDeDados.nextInt());
-		
-		System.out.println("Digite a braco mais forte do jogador(a) de Basquete: ");
-		jogadorBasqueteObjeto.setBracoMaisForte(entradaDeDados.next());
+		jogadorBasqueteObjeto.setIdade(JOptionPane.showInputDialog("Digite a idade do jogador(a) de Basquete: "));
 
-		System.out.println("Digite o valor por ponto do Basquete: ");
-		jogadorBasqueteObjeto.setValorPorPontos(entradaDeDados.nextDouble()); 
-		
-		System.out.println("Digite quantidade de pontos marcardos: ");
-		jogadorBasqueteObjeto.setQntPontos(entradaDeDados.nextInt());
+		jogadorBasqueteObjeto.setBracoMaisForte(JOptionPane.showInputDialog("Digite a braco mais forte do jogador(a) de Basquete: "));
+
+		jogadorBasqueteObjeto.setValorPorPontos(JOptionPane.showInputDialog("Digite o valor por ponto do Basquete: ")); 
+				
+		jogadorBasqueteObjeto.setQntPontos(JOptionPane.showInputDialog("Digite quantidade de pontos marcardos: "));
 		
 		jogadorBasqueteObjeto.setSalario(jogadorBasqueteObjeto.calcularPagamento());
 		jogadorBasqueteObjeto.setPatrocinio(jogadorBasqueteObjeto.calculoPatrocinio());
 		
 		jogadoresBasquete.add(jogadorBasqueteObjeto); 
 			
-		System.out.println("Nome do jogador(a) é: " + jogadorBasqueteObjeto.getNomeAtleta() );
-		System.out.println("A idade do jogador(a) é: " + jogadorBasqueteObjeto.getIdade() );
-		System.out.println("Braco mais forte do jogador(a) é: " + jogadorBasqueteObjeto.getBracoMaisForte());
-		System.out.println("Valor por pontos do jogador(a) é: " + jogadorBasqueteObjeto.getValorPorPontos());
-		System.out.println("Valor por pontos do jogador(a) é: " + jogadorBasqueteObjeto.getQntPontos());
-		System.out.println("O valor do salario: " + jogadorBasqueteObjeto.calcularPagamento());
-		System.out.println("Quantidade treinos semana: " + jogadorBasqueteObjeto.qtdTreinoSemana());
-		System.out.println("Valor calculo patrocinio: " + jogadorBasqueteObjeto.calculoPatrocinio());	
 		}
 		
 		System.out.println("Deseja cadastrar mais um atleta (S/N)?");
@@ -105,6 +90,7 @@ public class Principal {
 			System.out.println("-------------------------------------------");
 		}
 	System.out.println("#################Fim do Cadastro de Atletas############");
+*/
 	}
 
 } 
