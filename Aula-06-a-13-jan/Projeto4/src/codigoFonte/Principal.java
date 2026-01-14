@@ -3,6 +3,8 @@ package codigoFonte;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ForkJoinPool;
+
 import javax.swing.JOptionPane;
 
 public class Principal {
@@ -20,33 +22,53 @@ public class Principal {
 		do {
 //JOptionPa - Classe do java swing - pacote de interface grafica nativa do java 
 //showInputDialog - recebe uma string como parametro e retorna essa strig digitada pelo usuario
+
+			boolean letraOuNao;
 			String opcaoCadastro;
+
 			do {
-			    opcaoCadastro = validaOpcaoFouB(
-			        JOptionPane.showInputDialog("Digite F para jogador(a) de futsal ou B para jogador(a) de basquete")
-			    );
-			} while (opcaoCadastro == null);
+				opcaoCadastro = validaOpcaoFouB(JOptionPane
+						.showInputDialog("Digite F para jogador(a) de futsal ou B para jogador(a) de basquete"));
 
+				letraOuNao = somenteLetras(opcaoCadastro);
+			} while (!letraOuNao);
+
+// equalsIgnoreCase- para aceitar minus/maisc
 			if (opcaoCadastro.equalsIgnoreCase("F")) {
-			    JogadorFutsal jogadorFutsalObjeto = new JogadorFutsal();// sendo iniciado aqui para ser um obj novo e
-			                                                            // nao sobrescrever o anterior
+				JogadorFutsal jogadorFutsalObjeto = new JogadorFutsal();// sendo iniciado aqui para ser um obj novo e
+																		// nao sobrescrever o anterior
 
-				jogadorFutsalObjeto
-						.setNomeAtleta(JOptionPane.showInputDialog("Digite o nome do jogador(a) de Futsal: "));
+				do {
 
+					String nome = JOptionPane.showInputDialog("Qual o nome do Jogador(a) de futsal: ");
+
+					letraOuNao = somenteLetras(nome);
+
+					if (letraOuNao) {
+						jogadorFutsalObjeto.setNomeAtleta(nome);
+					}
+
+				} while (!letraOuNao);
 				int idadeTemporaria;
 				do {
 
 					idadeTemporaria = validaInteiroRetornaInt(
-							JOptionPane.showInputDialog("Digite a idade do jogador(a) de Basquete: "));
+							JOptionPane.showInputDialog("Digite a idade do jogador(a) de futsal: "));
 					if (idadeTemporaria != 0) {
 						jogadorFutsalObjeto.setIdade(idadeTemporaria);
 					}
 				} while (idadeTemporaria == 0);
 
-				jogadorFutsalObjeto.setPernaMaisForte(
-						JOptionPane.showInputDialog("Digite a perna mais forte do jogador(a) de Futsal: "));
+				do {
+					String pernaMaisForte = JOptionPane.showInputDialog("Qual a perna mais forte: ");
 
+					letraOuNao = somenteLetras(pernaMaisForte);
+
+					if (letraOuNao) {
+						jogadorFutsalObjeto.setPernaMaisForte(pernaMaisForte);
+					}
+
+				} while (!letraOuNao);
 				Double valorPorGolTemporaria;
 				do {
 
@@ -61,7 +83,7 @@ public class Principal {
 				do {
 
 					quantidadeGols = validaInteiroRetornaInt(
-							JOptionPane.showInputDialog("Digite a quantidade de pontos Basquete: "));
+							JOptionPane.showInputDialog("Digite a quantidade de pontos futsal: "));
 					if (quantidadeGols != 0) {
 						jogadorFutsalObjeto.setQtdGols(quantidadeGols);
 					}
@@ -163,12 +185,12 @@ public class Principal {
 		} else {
 			try {
 				numeroInteiro = Integer.parseInt(numeroString);
-				
+
 				if (numeroInteiro == 0) {
 					JOptionPane.showMessageDialog(null, "Zero nao é permitido");
 					numeroInteiro = 0;
 				}
-				
+
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Apenas numeros");
 				System.out.println("O valor:" + e.getMessage() + "nao pode ser convertido para inteiro");
@@ -187,7 +209,7 @@ public class Principal {
 
 			try {
 				numeroDecimal = Double.parseDouble(numeroString);
-				
+
 				if (numeroDecimal == 0.0) {
 					JOptionPane.showMessageDialog(null, "Zero nao é permitido");
 					numeroDecimal = 0.0;
@@ -203,22 +225,42 @@ public class Principal {
 
 		return numeroDecimal;
 	}
-	
+
 	public static String validaOpcaoFouB(String opcao) {
 
-	    if (opcao == null || opcao.isBlank()) {
-	        JOptionPane.showMessageDialog(null, "Opção inválida. Digite apenas B ou F.");
-	        return null;
-	    }
+		if (opcao == null || opcao.isBlank()) {
+			JOptionPane.showMessageDialog(null, "Opção inválida. Digite apenas B ou F.");
+			return null;
+		}
 
-	    if (!opcao.equalsIgnoreCase("F") && !opcao.equalsIgnoreCase("B")) {
-	        JOptionPane.showMessageDialog(null, "Opção inválida. Digite apenas B ou F.");
-	        return null;
-	    }
+		if (!opcao.equalsIgnoreCase("F") && !opcao.equalsIgnoreCase("B")) {
+			JOptionPane.showMessageDialog(null, "Opção inválida. Digite apenas B ou F.");
+			return null;
+		}
 
-	    return opcao.toUpperCase();
+		return opcao.toUpperCase();
 	}
-	
-	
-	
+
+	public static boolean somenteLetras(String textoRecebido) {
+		if (textoRecebido == null || textoRecebido.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Invalido");
+			return false;
+		}
+		// for tradicional
+		int qtdCaracterString = textoRecebido.length();
+
+		for (int indice = 0; indice < qtdCaracterString; indice++) {
+
+			char caracterAtual = textoRecebido.charAt(indice);
+
+			if (!Character.isLetter(caracterAtual)) {
+				JOptionPane.showMessageDialog(null, "Digite somente Letras!");
+				return false;
+
+			}
+
+		}
+		return true;
+	}
+
 }
