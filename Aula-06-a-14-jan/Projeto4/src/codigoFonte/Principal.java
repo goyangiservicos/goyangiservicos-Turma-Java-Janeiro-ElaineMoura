@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JOptionPane;
 
@@ -35,8 +36,19 @@ public class Principal {
 
 // equalsIgnoreCase- para aceitar minus/maisc
 			if (opcaoCadastro.equalsIgnoreCase("F")) {
-				JogadorFutsal jogadorFutsalObjeto = new JogadorFutsal();// sendo iniciado aqui para ser um obj novo e
-																		// nao sobrescrever o anterior
+				//gerador de um id automatico para o exercicio
+				Long idetificador = ThreadLocalRandom.current().nextLong(0, Long.MAX_VALUE);
+				//usando o construtor
+				JogadorFutsal jogadorFutsalObjeto = new JogadorFutsal(idetificador);// sendo iniciado
+
+				// aqui para ser um obj novo e
+				// notar que tem o mesmo nome varios contrutores, o que define para qual ele
+				// direciona
+				// sao os parametros que sao solicitados
+				// JogadorFutsal jogadorFutsalObjeto = new JogadorFutsal("elaine", 39,
+				// "esquerda", 10.0, 10);
+				// JogadorFutsal jogadorFutsalSoNome = new JogadorFutsal("elaine");
+				// aqui so pede o parametro nome.
 
 				do {
 
@@ -98,7 +110,13 @@ public class Principal {
 			}
 
 			if (opcaoCadastro.equalsIgnoreCase("B")) {
-				JogadorBasquete jogadorBasqueteObjeto = new JogadorBasquete();
+				//gerador de um id automatico para o exercicio
+				Long idetificador = ThreadLocalRandom.current().nextLong(0, Long.MAX_VALUE);
+				//usando o construtor
+				JogadorBasquete jogadorBasqueteObjeto = new JogadorBasquete(idetificador);
+
+				// JogadorBasquete jogadorBasqueteObjeto = new JogadorBasquete("elaine", 39,
+				// "direito", 15.0, 10);
 				// System.out.println("Digite o nome do jogador(a) de Basquete: ");
 
 				do {
@@ -171,6 +189,7 @@ public class Principal {
 		mensagem.append("#######LISTA DE JOGADORES CADASTRADOS#######\n");
 
 		for (JogadorFutsal jogadorFutsalLista : jogadoresFutsal) {
+			mensagem.append("Identificador: ").append(jogadorFutsalLista.getIdentificador()).append("\n");
 
 			mensagem.append("nome do jogador de futsal: ").append(jogadorFutsalLista.getNomeAtleta()).append("\n");
 
@@ -193,6 +212,8 @@ public class Principal {
 		mensagem.append("------------------------------------\n");
 
 		for (JogadorBasquete jogadorBasquetelLista : jogadoresBasquete) {
+
+			mensagem.append("Identificador: ").append(jogadorBasquetelLista.getIdentificador()).append("\n");
 
 			mensagem.append("nome do jogador de Basquete: ").append(jogadorBasquetelLista.getNomeAtleta()).append("\n");
 

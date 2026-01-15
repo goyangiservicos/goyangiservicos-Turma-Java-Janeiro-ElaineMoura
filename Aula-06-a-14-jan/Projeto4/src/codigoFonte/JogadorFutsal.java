@@ -2,6 +2,31 @@ package codigoFonte;
 
 public class JogadorFutsal extends Atleta {
 
+	
+	//Esse contrutor do jogador de futsal é herdado do pai (atleta)
+/*	public JogadorFutsal(String nomeAtletaConstrutor, int idadeAtletaConstrutor, String pernaMaisForteConstrutor, Double valorPorGolConstrutor, int qtdGolConstrutor) {
+		super(nomeAtletaConstrutor, idadeAtletaConstrutor);
+		this.pernaMaisForte =pernaMaisForteConstrutor;
+		this.valorPorGols= valorPorGolConstrutor;
+		this.qtdGols = qtdGolConstrutor;
+	
+	}
+
+	public JogadorFutsal() {
+		super(); // indica que vai usar a superclasse
+	}
+	
+	public JogadorFutsal(String nomeConstrutor) {
+		super(nomeConstrutor); // indica que vai usar a superclasse
+	}
+	*/
+	//construtor
+	public JogadorFutsal(long idenficadorConstrutor) {
+		super(idenficadorConstrutor);
+	}
+	
+	
+
 	private String pernaMaisForte;
 	private Double valorPorGols;
 	private int qtdGols;

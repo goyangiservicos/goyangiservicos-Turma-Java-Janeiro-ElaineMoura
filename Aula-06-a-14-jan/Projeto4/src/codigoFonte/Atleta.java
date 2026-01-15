@@ -4,9 +4,20 @@ public abstract class Atleta {
 
 	private String nomeAtleta;
 	private int idade;
+	private long identificador;
+	
+	public long getIdentificador() {
+		return identificador;
+	}
+
+	public Atleta(long identificador) {
+		super();
+		this.identificador = identificador;
+	}
+
 	private Double patrocinio;
 	private Double salario;
-
+	
 	public Double getPatrocinio() {
 		return patrocinio;
 	}
@@ -25,6 +36,22 @@ public abstract class Atleta {
 
 	protected abstract Double calculoPatrocinio();
 
+	// Construtor de Atleta - inicalizando o objeto com nome e idade
+/*	public Atleta(String nomeAtletaConstrutor, int idadeAtletaConstrutor) {
+		this.nomeAtleta = nomeAtletaConstrutor;
+		this.idade = idadeAtletaConstrutor;
+
+	}
+
+	// construtor vazio - quando faz isso autoriza usar o contrutor vazio
+	public Atleta() {
+
+	}
+	
+	public Atleta(String nomeConstrutor) {
+		this.nomeAtleta = nomeConstrutor;
+	}
+*/
 	// aqui temos herança - todas as subclasses herdam 100% o comportmaento do
 	// metodo
 	public void verificaNumeroNegativo(Double valor) {
