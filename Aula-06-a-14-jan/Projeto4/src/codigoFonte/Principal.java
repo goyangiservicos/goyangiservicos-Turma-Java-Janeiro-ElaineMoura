@@ -36,9 +36,9 @@ public class Principal {
 
 // equalsIgnoreCase- para aceitar minus/maisc
 			if (opcaoCadastro.equalsIgnoreCase("F")) {
-				//gerador de um id automatico para o exercicio
+				// gerador de um id automatico para o exercicio
 				Long idetificador = ThreadLocalRandom.current().nextLong(0, Long.MAX_VALUE);
-				//usando o construtor
+				// usando o construtor
 				JogadorFutsal jogadorFutsalObjeto = new JogadorFutsal(idetificador);// sendo iniciado
 
 				// aqui para ser um obj novo e
@@ -110,9 +110,9 @@ public class Principal {
 			}
 
 			if (opcaoCadastro.equalsIgnoreCase("B")) {
-				//gerador de um id automatico para o exercicio
+				// gerador de um id automatico para o exercicio
 				Long idetificador = ThreadLocalRandom.current().nextLong(0, Long.MAX_VALUE);
-				//usando o construtor
+				// usando o construtor
 				JogadorBasquete jogadorBasqueteObjeto = new JogadorBasquete(idetificador);
 
 				// JogadorBasquete jogadorBasqueteObjeto = new JogadorBasquete("elaine", 39,
