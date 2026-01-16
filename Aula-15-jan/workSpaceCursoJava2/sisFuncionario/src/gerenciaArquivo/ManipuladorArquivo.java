@@ -12,11 +12,11 @@ public class ManipuladorArquivo {
 		String enderecoArquivo = "C:\\IMPACTA JAVA\\goyangiservicos-Turma-Java-Janeiro-ElaineMoura\\Aula-15-jan\\workSpaceCursoJava2\\sisFuncionario\\registroGerente.txt";
 		try {
 			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(enderecoArquivo));
-			bufferedWriter.append("o nome do gerente é:" + gerente.getNome());
+			bufferedWriter.append("o NOME do gerente é:" + gerente.getNome());
 			bufferedWriter.newLine();
-			bufferedWriter.append("o nome do gerente é:" + gerente.getCpf());
-			bufferedWriter.append("o nome do gerente é:" + gerente.getEmail());
-			bufferedWriter.append("o nome do gerente é:" + gerente.getGerencia());
+			bufferedWriter.append("o CPF do gerente é:" + gerente.getCpf());
+			bufferedWriter.append("o EMAIL do gerente é:" + gerente.getEmail());
+			bufferedWriter.append("A GERENCIA é:" + gerente.getGerencia());
 			
 			bufferedWriter.close(); //PRECISA FECHAR!!!!
 
