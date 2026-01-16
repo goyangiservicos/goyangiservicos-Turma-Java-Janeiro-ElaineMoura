@@ -26,7 +26,7 @@ public class ControladorTelaPrincipal implements ActionListener {
 		System.out.println("digitou" + opcao.getText());
 		switch (opcao.getText()) {
 		case "1": {
-			telaCadastroGerente.formularioGerente();
+			telaCadastroGerente.formularioGerente(frameTelaPrincipal);
 			frameTelaPrincipal.setVisible(false);
 			System.out.println("Cadastro de gerente");
 			break;
