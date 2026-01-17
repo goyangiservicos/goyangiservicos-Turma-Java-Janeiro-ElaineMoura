@@ -29,6 +29,7 @@ public class TelaCadastroGerente {
 
 		JLabel labelCpf = new JLabel(cpf);
 		panelGerente.add(labelCpf);
+		
 		JTextField textCpf = new JTextField(10);
 		panelGerente.add(textCpf);
 

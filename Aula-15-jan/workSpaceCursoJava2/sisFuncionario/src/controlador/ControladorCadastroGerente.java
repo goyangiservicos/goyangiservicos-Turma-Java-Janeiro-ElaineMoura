@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 
 import entidade.Gerente;
 import gerenciaArquivo.ManipuladorArquivo;
-
+import validacaoTela.ValidacaoTela;
 public class ControladorCadastroGerente implements ActionListener {
 
 	JTextField nome;
@@ -31,8 +31,7 @@ public class ControladorCadastroGerente implements ActionListener {
 		this.frameCadastroGerente = frameCadastroGerente;
 		this.frameTelaPrincipal = frameTelaPrincipal;
 	
-		
-	}
+			}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -47,29 +46,62 @@ public class ControladorCadastroGerente implements ActionListener {
 	
 	//	manipuladorArquivo.registrarGerente(gerente);
 		
-			switch (e.getActionCommand()){
-				case "cadastrar":{
-					Gerente gerente =new Gerente();
-					gerente.setNome(nome.getText());
-					gerente.setCpf(cpf.getText());
-					gerente.setEmail(email.getText());
-					gerente.setGerencia(gerencia.getText());
+		switch (e.getActionCommand()) {
+		case "cadastrar": {
+			
+			ValidacaoTela validacaoTela = new ValidacaoTela();
+		    validacaoTela.setCpf(cpf.getText());
+		    //validacoes de cpf vazio, se tem 11 caracteres e se eh valido 
+		    if (cpf.getText() == null || cpf.getText().trim().isEmpty()) {
+		        JOptionPane.showMessageDialog(null, "CPF vazio, informe o CPF.");
+		        return;
+		    }
+
+		    if (!validacaoTela.validaCampoCpf()) {
+		        JOptionPane.showMessageDialog(null, "CPF invalido. CPF deve conter 11 números.");
+		        return;
+		    }
+			Gerente gerente = new Gerente();
+			gerente.setNome(nome.getText());
+			
+			if(!gerente.isCpfValido(cpf.getText())) {
+				JOptionPane.showMessageDialog(null, "CPF invalido!" );
+				
+			}else {
+				gerente.setCpf(cpf.getText());
+				gerente.setEmail(email.getText());
+				gerente.setGerencia(gerencia.getText());
+				
+				if(manipuladorArquivo.registrarGerente(gerente)) {
 					
-					if (manipuladorArquivo.registrarGerente(gerente)) {
-						JOptionPane.showMessageDialog(null, "o arquivo foi salvo");
-					}else {
-						JOptionPane.showMessageDialog(null, "o arquivo nao foi salvo");
-					}
-									break;
-			}
-				case "menu Inicial":{
-					frameCadastroGerente.setVisible(false);
-					frameTelaPrincipal.setVisible(true);
+					JOptionPane.showMessageDialog(null, "O arquivo foi salvo");
+					
+					nome.setText(null);
+					cpf.setText(null);
+					email.setText(null);
+					gerencia.setText(null);
+					
+				}else {
+					JOptionPane.showMessageDialog(null, "O arquivo não salvo");
 				}
 			}
+				
+			
+			
+			
+			break;
+		}
 		
-		
-		
-
+		case "menu Inicial": {
+			frameCadastroGerente.setVisible(false);
+			frameTelaPrincipal.setVisible(true);
+			
+			break;
+		}
 	}
+	
+	
+		
+	}
+
 }
