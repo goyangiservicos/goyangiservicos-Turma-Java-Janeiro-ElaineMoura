@@ -14,12 +14,10 @@ public class TelaCadastroGerente {
 		String cpf = "Digite o cpf do gerente";
 		String email = "Digite o email do gerente";
 		String gerencia = "Digite a gerencia";
-		
 
 		JFrame frameCadastroGerente = new JFrame();
 		frameCadastroGerente.setSize(300, 300);
 
-		
 		JPanel panelGerente = new JPanel();
 
 		JLabel labelNome = new JLabel(nomeGerente);
@@ -29,7 +27,7 @@ public class TelaCadastroGerente {
 
 		JLabel labelCpf = new JLabel(cpf);
 		panelGerente.add(labelCpf);
-		
+
 		JTextField textCpf = new JTextField(10);
 		panelGerente.add(textCpf);
 
@@ -55,7 +53,7 @@ public class TelaCadastroGerente {
 		frameCadastroGerente.setVisible(true);
 
 		ControladorCadastroGerente controladorCadastroGerente = new ControladorCadastroGerente(textNome, textCpf,
-				textEmail, textGerencia, frameCadastroGerente,frameTelaPrincipal );
+				textEmail, textGerencia, frameCadastroGerente, frameTelaPrincipal);
 		botaoCadastrarGerente.addActionListener(controladorCadastroGerente);
 		botaoMenuInicial.addActionListener(controladorCadastroGerente);
 	}

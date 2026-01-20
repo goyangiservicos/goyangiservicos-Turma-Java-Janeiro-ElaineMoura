@@ -1,0 +1,2 @@
+o NOME do gerente é:JOÃO
+o CPF do gerente é:32786097860o EMAIL do gerente é:JOAO@EMAILA GERENCIA é:ESCRITORIO01

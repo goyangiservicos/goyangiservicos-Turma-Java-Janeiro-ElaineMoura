@@ -39,7 +39,8 @@ public class TelaPrincipal {
 		frameMenuPrincipal.add(panelMenuPrincipal);
 		frameMenuPrincipal.setLocationRelativeTo(frameMenuPrincipal);// pra centralizar a tela
 		frameMenuPrincipal.setVisible(true); // Liberando a visualização desse frame
-		ControladorTelaPrincipal controladorTelaPrincipal = new ControladorTelaPrincipal(caixaTextoOpcao, frameMenuPrincipal);
+		ControladorTelaPrincipal controladorTelaPrincipal = new ControladorTelaPrincipal(caixaTextoOpcao,
+				frameMenuPrincipal);
 		botaoEnviar.addActionListener(controladorTelaPrincipal); // aqui add o botao dentro do controlador, para poder
 																	// fazer acoes
 
