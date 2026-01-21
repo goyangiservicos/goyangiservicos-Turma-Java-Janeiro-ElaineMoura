@@ -5,10 +5,7 @@ public class Pessoa {
 	private String cpf;
 	private String email;
 
-	
-	
-	
-	public Pessoa( String cpf,String nome, String email) {
+	public Pessoa(String cpf, String nome, String email) {
 		super();
 		this.cpf = cpf;
 		this.nome = nome;
