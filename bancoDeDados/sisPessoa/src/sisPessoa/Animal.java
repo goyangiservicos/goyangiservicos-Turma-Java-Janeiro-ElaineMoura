@@ -37,4 +37,9 @@ public class Animal {
 		this.nomeTutor = nomeTutor;
 	}
 
+	@Override
+	public String toString() {
+		return "Animal [matricula=" + matricula + ", nome=" + nome + ", tutor=" + nomeTutor + "]";
+	}
+
 }
