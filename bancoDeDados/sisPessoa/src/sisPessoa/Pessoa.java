@@ -8,10 +8,10 @@ public class Pessoa {
 	
 	
 	
-	public Pessoa(String nome, String cpf, String email) {
+	public Pessoa( String cpf,String nome, String email) {
 		super();
-		this.nome = nome;
 		this.cpf = cpf;
+		this.nome = nome;
 		this.email = email;
 	}
 

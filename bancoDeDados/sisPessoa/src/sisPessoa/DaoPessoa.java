@@ -22,8 +22,8 @@ public class DaoPessoa {
 			conexaoSisPessoa = fabricaConexoesPessoa.criarConexaoSisPessoa();
 			preparaComando = conexaoSisPessoa.prepareStatement(comandoSqlInsert);
 
-			preparaComando.setString(2, pessoa.getCpf());
-			preparaComando.setString(1, pessoa.getNome());
+			preparaComando.setString(1, pessoa.getCpf());
+			preparaComando.setString(2, pessoa.getNome());
 			preparaComando.setString(3, pessoa.getEmail());
 
 			salvamento = true;
