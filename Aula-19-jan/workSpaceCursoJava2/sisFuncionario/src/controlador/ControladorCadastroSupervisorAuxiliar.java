@@ -65,7 +65,7 @@ public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 			} else {
 				supervisorAuxiliar.setCpf(cpf.getText());
 				supervisorAuxiliar.setEmail(email.getText());
-				supervisorAuxiliar.setPatio(null);
+				supervisorAuxiliar.setPatio(patio.getText());;
 
 				if (repositorioSupervisorAuxiliarImplementacao.salvarSupervisorAuxiliar(supervisorAuxiliar)) {
 

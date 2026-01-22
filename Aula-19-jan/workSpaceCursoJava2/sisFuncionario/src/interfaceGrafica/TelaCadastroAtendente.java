@@ -40,6 +40,7 @@ public class TelaCadastroAtendente {
 
 		JLabel labelSetor = new JLabel(setor);
 		panelAtendente.add(labelSetor);
+		
 		JTextField textSetor = new JTextField(10);
 		panelAtendente.add(textSetor);
 

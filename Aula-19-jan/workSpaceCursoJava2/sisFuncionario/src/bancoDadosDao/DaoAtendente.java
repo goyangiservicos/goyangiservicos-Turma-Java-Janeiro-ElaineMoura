@@ -1,18 +1,17 @@
 package bancoDadosDao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import entidade.SupervisorAuxiliar;
+import entidade.Atendente;
+public class DaoAtendente {
 
-public class DaoSupervisorAuxiliar {
 
-	public boolean salvarNoBanco(SupervisorAuxiliar supervisorAuxiliar) {
+	public boolean salvarNoBanco(Atendente atendente) {
 
 		boolean salvamento = false;
 
-		String comandoSqlInsert = "insert into Supervisor_Auxiliar(cpf,nome,patio) values (?,?,?)";
+		String comandoSqlInsert = "insert into atendente(cpf,nome,setor) values (?,?,?)";
 
 		FabricaDeConexoes fabricaConexoesSisFuncionario = new FabricaDeConexoes();
 
@@ -24,9 +23,9 @@ public class DaoSupervisorAuxiliar {
 			conexaoSisFuncionario = fabricaConexoesSisFuncionario.criarConexaoSis_funcionario();
 			preparaComando = conexaoSisFuncionario.prepareStatement(comandoSqlInsert);
 
-			preparaComando.setString(1, supervisorAuxiliar.getCpf());
-			preparaComando.setString(2, supervisorAuxiliar.getNome());
-			preparaComando.setString(3, supervisorAuxiliar.getPatio());
+			preparaComando.setString(1, atendente.getCpf());
+			preparaComando.setString(2, atendente.getNome());
+			preparaComando.setString(3, atendente.getSetor());
 
 			salvamento = true;
 

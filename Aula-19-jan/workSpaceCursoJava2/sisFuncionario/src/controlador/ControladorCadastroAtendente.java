@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import entidade.Atendente;
-import gerenciaArquivo.ManipuladorArquivo;
+import repositorio.RepositorioAtendenteImplementacao;
 import validacaoTela.ValidacaoTela;
 
 public class ControladorCadastroAtendente implements ActionListener {
@@ -17,7 +17,7 @@ public class ControladorCadastroAtendente implements ActionListener {
 	JTextField cpf;
 	JTextField email;
 	JTextField setor;
-	ManipuladorArquivo manipuladorArquivo = new ManipuladorArquivo();
+	RepositorioAtendenteImplementacao repositorioAtendenteImplementacao = new RepositorioAtendenteImplementacao();
 	JFrame frameCadastroAtendente;
 	JFrame frameTelaPrincipal;
 
@@ -67,9 +67,10 @@ public class ControladorCadastroAtendente implements ActionListener {
 				atendente.setEmail(email.getText());
 				atendente.setSetor(setor.getText());
 
-				if (manipuladorArquivo.registrarAtendente(atendente)) {
+				if (repositorioAtendenteImplementacao.salvarAtendente(atendente)) {
 
-					JOptionPane.showMessageDialog(null, "O arquivo foi salvo");
+
+					JOptionPane.showMessageDialog(null, "O atennddente  foi salvo");
 
 					nome.setText(null);
 					cpf.setText(null);
@@ -77,7 +78,7 @@ public class ControladorCadastroAtendente implements ActionListener {
 					setor.setText(null);
 
 				} else {
-					JOptionPane.showMessageDialog(null, "O arquivo não salvo");
+					JOptionPane.showMessageDialog(null, "O atendente  não salvo");
 				}
 			}
 
