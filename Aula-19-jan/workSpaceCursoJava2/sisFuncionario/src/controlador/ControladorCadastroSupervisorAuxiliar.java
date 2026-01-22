@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import entidade.SupervisorAuxiliar;
-import gerenciaArquivo.ManipuladorArquivo;
+import repositorio.RepositorioSupervisorAuxiliarImplementacao;
 import validacaoTela.ValidacaoTela;
 
 public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
@@ -17,7 +17,7 @@ public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 	JTextField cpf;
 	JTextField email;
 	JTextField patio;
-	ManipuladorArquivo manipuladorArquivo = new ManipuladorArquivo();
+	RepositorioSupervisorAuxiliarImplementacao repositorioSupervisorAuxiliarImplementacao = new RepositorioSupervisorAuxiliarImplementacao();
 	JFrame frameCadastroSupervisorAuxiliar;
 	JFrame frameTelaPrincipal;
 
@@ -67,9 +67,9 @@ public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 				supervisorAuxiliar.setEmail(email.getText());
 				supervisorAuxiliar.setPatio(null);
 
-				if (manipuladorArquivo.registrarSupervisorAuxiliar(supervisorAuxiliar)) {
+				if (repositorioSupervisorAuxiliarImplementacao.salvarSupervisorAuxiliar(supervisorAuxiliar)) {
 
-					JOptionPane.showMessageDialog(null, "O arquivo foi salvo");
+					JOptionPane.showMessageDialog(null, "O dados foram salvos no banco");
 
 					nome.setText(null);
 					cpf.setText(null);
@@ -77,7 +77,7 @@ public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 					patio.setText(null);
 
 				} else {
-					JOptionPane.showMessageDialog(null, "O arquivo não salvo");
+					JOptionPane.showMessageDialog(null, "os dados nao foram salvos no banco");
 				}
 			}
 
@@ -87,11 +87,9 @@ public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 		case "menu Inicial": {
 			frameCadastroSupervisorAuxiliar.setVisible(false);
 			frameTelaPrincipal.setVisible(true);
-
 			break;
 		}
 		}
 
 	}
-
 }

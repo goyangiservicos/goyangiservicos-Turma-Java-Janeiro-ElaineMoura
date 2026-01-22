@@ -3,14 +3,13 @@ package sisPessoa;
 public class Principal {
 
 	public static void main(String[] args) {
-
+		System.out.println("Shalom Shalom");
 		System.out.println("rodou");
 		// cadastro de pessoa
 		Pessoa pessoa = new Pessoa("963258", "elaine C Moura", "email@email");
 		DaoPessoa daoPessoa = new DaoPessoa();
 		daoPessoa.salvarNoBanco(pessoa);
 		System.out.println("inseriu a pessoa ok");
-
 		// chama o select pra ver se cadastrou mesmo e os dados.
 		Pessoa p = daoPessoa.buscarPessoaPorCpf("963258");
 		System.out.println(p);
