@@ -8,9 +8,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import entidade.SupervisorAuxiliar;
+import interfaceGrafica.TelaListarSupervisorAuxiliar;
 import repositorio.RepositorioSupervisorAuxiliarImplementacao;
 import validacaoTela.ValidacaoTela;
-
 public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 
 	JTextField nome;
@@ -18,6 +18,8 @@ public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 	JTextField email;
 	JTextField patio;
 	RepositorioSupervisorAuxiliarImplementacao repositorioSupervisorAuxiliarImplementacao = new RepositorioSupervisorAuxiliarImplementacao();
+	TelaListarSupervisorAuxiliar telaListarSupervisorAuxiliar = new TelaListarSupervisorAuxiliar();
+	
 	JFrame frameCadastroSupervisorAuxiliar;
 	JFrame frameTelaPrincipal;
 
@@ -89,7 +91,14 @@ public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 			frameTelaPrincipal.setVisible(true);
 			break;
 		}
+		case "Listar": {
+			telaListarSupervisorAuxiliar.listarSupervisorAuxiliar(repositorioSupervisorAuxiliarImplementacao.listarSupervisorAuxiliar()); 
+
+			break;
+		}
+
 		}
 
 	}
+
 }

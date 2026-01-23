@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import entidade.Gerente;
+import interfaceGrafica.TelaListarGerente;
 import repositorio.RepositorioGerenteImplementacao;
 import validacaoTela.ValidacaoTela;
 
@@ -18,6 +19,7 @@ public class ControladorCadastroGerente implements ActionListener {
 	JTextField email;
 	JTextField gerencia;
 	RepositorioGerenteImplementacao repositorioGerenteImplementacao = new RepositorioGerenteImplementacao();
+	TelaListarGerente telaListarGerente = new TelaListarGerente();
 	JFrame frameCadastroGerente;
 	JFrame frameTelaPrincipal;
 
@@ -92,6 +94,12 @@ public class ControladorCadastroGerente implements ActionListener {
 
 			break;
 		}
+		case "Listar": {
+			telaListarGerente.listarGerente(repositorioGerenteImplementacao.listarGerente()); 
+
+			break;
+		}
+
 		}
 
 	}

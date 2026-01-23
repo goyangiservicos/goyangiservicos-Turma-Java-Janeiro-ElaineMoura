@@ -2,7 +2,10 @@ package bancoDadosDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import entidade.Gerente;
 
@@ -56,5 +59,68 @@ public class DaoGerente {
 		}
 
 		return salvamento;
+
+		}
+
+		public List<Gerente> listarGerenteDoBanco() {
+			
+			FabricaDeConexoes fabricaConexoesSisFuncionario = new FabricaDeConexoes();
+			Connection connection = null; 
+			PreparedStatement preparaOcomandoSQL = null; 
+
+			String comandoSqlInsert = "select * from gerente"; 
+			
+			List<Gerente> listaGerente = new ArrayList<Gerente>();
+			
+			ResultSet resultadoDaTabelaDoBanco = null;
+			
+			try {
+				
+				connection = fabricaConexoesSisFuncionario.criarConexaoSis_funcionario();
+				preparaOcomandoSQL = connection.prepareStatement(comandoSqlInsert);
+				
+				
+				resultadoDaTabelaDoBanco = preparaOcomandoSQL.executeQuery();
+				
+				while(resultadoDaTabelaDoBanco.next()) {
+					
+					Gerente gerente = new Gerente();
+					
+					gerente.setCpf(resultadoDaTabelaDoBanco.getString("cpf"));
+					
+					gerente.setNome(resultadoDaTabelaDoBanco.getString("nome"));
+					
+					gerente.setGerencia(resultadoDaTabelaDoBanco.getString("email"));
+					
+					listaGerente.add(gerente);
+					
+					
+				}
+				
+				
+			}catch (Exception e) {
+				
+			
+			} finally { // Esse é obrigatorio
+			try {
+				if (connection != null) {
+					connection.close();// Se objeto connectionBaseExemplo estiver aberto essa linha vai
+													// encerrar
+				}
+				if (preparaOcomandoSQL != null) {// Se objeto preparaOcomandoSQL estiver aberto essa linha vai encerrar
+					preparaOcomandoSQL.close();
+				}
+
+			} catch (Exception e2) {
+				System.out.println("Não foi possivel fechar a conexão!!");
+			}
+
+		}
+
+			
+			return listaGerente;
+		}
+		
+		
+
 	}
-}

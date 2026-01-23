@@ -2,7 +2,10 @@ package bancoDadosDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import entidade.SupervisorAuxiliar;
 
@@ -54,4 +57,58 @@ public class DaoSupervisorAuxiliar {
 
 		return salvamento;
 	}
+
+	public List<SupervisorAuxiliar> listarSupervisorAuxiliar() {
+
+		FabricaDeConexoes fabricaConexoesSisFuncionario = new FabricaDeConexoes();
+		Connection connection = null;
+		PreparedStatement preparaOcomandoSQL = null;
+
+		String comandoSqlInsert = "select * from supervisor_auxiliar";
+
+		List<SupervisorAuxiliar> listaSupervisorAuxiliar = new ArrayList<SupervisorAuxiliar>();
+
+		ResultSet resultadoDaTabelaDoBanco = null;
+
+		try {
+
+			connection = fabricaConexoesSisFuncionario.criarConexaoSis_funcionario();
+			preparaOcomandoSQL = connection.prepareStatement(comandoSqlInsert);
+
+			resultadoDaTabelaDoBanco = preparaOcomandoSQL.executeQuery();
+
+			while (resultadoDaTabelaDoBanco.next()) {
+
+				SupervisorAuxiliar supervisorAuxiliar = new SupervisorAuxiliar();
+
+				supervisorAuxiliar.setCpf(resultadoDaTabelaDoBanco.getString("cpf"));
+
+				supervisorAuxiliar.setNome(resultadoDaTabelaDoBanco.getString("nome"));
+
+				supervisorAuxiliar.setPatio(resultadoDaTabelaDoBanco.getString("patio"));
+
+				listaSupervisorAuxiliar.add(supervisorAuxiliar);
+
+			}
+
+		} catch (Exception e) {
+
+		} finally { // obrigatorio
+			try {
+				if (connection != null) {
+					connection.close();
+				}
+				if (preparaOcomandoSQL != null) {
+					preparaOcomandoSQL.close();
+				}
+
+			} catch (Exception e2) {
+				System.out.println("Não foi possivel fechar a conexão!!");
+			}
+
+		}
+
+		return listaSupervisorAuxiliar;
+	}
+
 }

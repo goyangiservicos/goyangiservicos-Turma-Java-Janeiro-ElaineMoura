@@ -47,7 +47,10 @@ public class TelaCadastroSupervisorAuxiliar {
 
 				JButton botaoMenuInicial = new JButton("menu Inicial");
 				panelSupervisorAuxiliar.add(botaoMenuInicial);
-
+				
+				JButton botaoListar = new JButton("Listar");
+				panelSupervisorAuxiliar.add(botaoListar);
+				
 				frameCadastroSupervisorAuxiliar.add(panelSupervisorAuxiliar);
 				frameCadastroSupervisorAuxiliar.setLocationRelativeTo(frameCadastroSupervisorAuxiliar);
 				frameCadastroSupervisorAuxiliar.setVisible(true);
@@ -56,6 +59,7 @@ public class TelaCadastroSupervisorAuxiliar {
 						textEmail, textSupervisorAuxiliar, frameCadastroSupervisorAuxiliar, frameTelaPrincipal);
 				botaoCadastrarSupervisorAuxiliar.addActionListener(controladorCadastroSupervisorAuxiliar);
 				botaoMenuInicial.addActionListener(controladorCadastroSupervisorAuxiliar);
+				botaoListar.addActionListener(controladorCadastroSupervisorAuxiliar);
 			}
 		}
 
