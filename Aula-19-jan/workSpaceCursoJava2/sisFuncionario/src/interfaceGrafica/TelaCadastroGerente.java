@@ -54,11 +54,14 @@ public class TelaCadastroGerente {
 		
 		JButton botaoListar = new JButton("Listar");
 		panelGerente.add(botaoListar);
+			
+
 
 		ControladorCadastroGerente controladorCadastroGerente = new ControladorCadastroGerente(textNome, textCpf,
 				textEmail, textGerencia, frameCadastroGerente, frameTelaPrincipal);
 		botaoCadastrarGerente.addActionListener(controladorCadastroGerente);
 		botaoMenuInicial.addActionListener(controladorCadastroGerente);
 		botaoListar.addActionListener(controladorCadastroGerente);
+		//botaoEditar.addActionListener(controladorCadastroGerente);
 	}
 }

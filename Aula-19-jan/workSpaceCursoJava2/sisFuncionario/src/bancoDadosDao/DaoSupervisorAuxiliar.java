@@ -82,9 +82,7 @@ public class DaoSupervisorAuxiliar {
 				SupervisorAuxiliar supervisorAuxiliar = new SupervisorAuxiliar();
 
 				supervisorAuxiliar.setCpf(resultadoDaTabelaDoBanco.getString("cpf"));
-
 				supervisorAuxiliar.setNome(resultadoDaTabelaDoBanco.getString("nome"));
-
 				supervisorAuxiliar.setPatio(resultadoDaTabelaDoBanco.getString("patio"));
 
 				listaSupervisorAuxiliar.add(supervisorAuxiliar);
@@ -103,7 +101,7 @@ public class DaoSupervisorAuxiliar {
 				}
 
 			} catch (Exception e2) {
-				System.out.println("Não foi possivel fechar a conexão!!");
+				System.out.println("Não foi possivel fechar a conexao");
 			}
 
 		}

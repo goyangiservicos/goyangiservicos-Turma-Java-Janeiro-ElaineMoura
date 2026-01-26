@@ -1,6 +1,8 @@
-/repositorio/
-/bancoDados/
-/bancoDadosConfiguracao/
 /bancoDadosDao/
 /controlador/
+/entidade/
+/gerenciaArquivo/
 /interfaceGrafica/
+/principal/
+/repositorio/
+/validacaoTela/

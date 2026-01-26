@@ -96,7 +96,8 @@ public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 
 			break;
 		}
-
+		
+	
 		}
 
 	}
