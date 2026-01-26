@@ -108,5 +108,48 @@ public class DaoSupervisorAuxiliar {
 
 		return listaSupervisorAuxiliar;
 	}
+	
+	public boolean atualizarSupervisorAuxiliar(SupervisorAuxiliar supervisorAuxiliar) {
+
+		boolean atualizado = false;
+
+		String comandoSqlUpdate =
+				"update supervisor_auxiliar set nome = ?, patio = ? where cpf = ?";
+
+		FabricaDeConexoes fabricaConexoesSisFuncionario = new FabricaDeConexoes();
+		Connection conexaoSisFuncionario = null;
+		PreparedStatement preparaComando = null;
+
+		try {
+			conexaoSisFuncionario = fabricaConexoesSisFuncionario.criarConexaoSis_funcionario();
+			preparaComando = conexaoSisFuncionario.prepareStatement(comandoSqlUpdate);
+
+			preparaComando.setString(1, supervisorAuxiliar.getNome());
+			preparaComando.setString(2, supervisorAuxiliar.getPatio());
+			preparaComando.setString(3, supervisorAuxiliar.getCpf()); // CPF só no WHERE
+
+			preparaComando.executeUpdate();
+			atualizado = true;
+
+		} catch (SQLException e) {
+			System.out.println("erro ao atualizar supervisor auxiliar");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (conexaoSisFuncionario != null) {
+					conexaoSisFuncionario.close();
+				}
+				if (preparaComando != null) {
+					preparaComando.close();
+				}
+			} catch (SQLException e) {
+				System.out.println("erro ao fechar a conexao no banco");
+				e.printStackTrace();
+			}
+		}
+
+		return atualizado;
+	}
+
 
 }

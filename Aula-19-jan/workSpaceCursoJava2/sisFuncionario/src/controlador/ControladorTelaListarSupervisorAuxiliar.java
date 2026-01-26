@@ -25,6 +25,14 @@ public class ControladorTelaListarSupervisorAuxiliar implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		
+		SupervisorAuxiliar supervisorAuxiliar = buscarSupervisorAuxiliarPorCpf();
+
+		if (supervisorAuxiliar == null) {
+			return;
+		}
+		
 		telaDetalharSupervisorAuxiliar.detalharSupervisorAuxiliar(buscarSupervisorAuxiliarPorCpf());
 		
 	}
