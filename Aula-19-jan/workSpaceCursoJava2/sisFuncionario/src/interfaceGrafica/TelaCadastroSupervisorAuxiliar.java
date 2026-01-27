@@ -76,6 +76,7 @@ public class TelaCadastroSupervisorAuxiliar {
 				panelSupervisorAuxiliar.add(botaoListar, gbc);
 				
 
+
 				frameCadastroSupervisorAuxiliar.add(panelSupervisorAuxiliar);
 				frameCadastroSupervisorAuxiliar.setLocationRelativeTo(frameCadastroSupervisorAuxiliar);
 				frameCadastroSupervisorAuxiliar.setVisible(true);

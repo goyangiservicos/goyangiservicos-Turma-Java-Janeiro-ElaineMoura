@@ -6,10 +6,12 @@ import java.awt.Insets;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -89,9 +91,32 @@ public class TelaAlterarSupervisorAuxiliar {
 				boolean atualizou = daoSupervisorAuxiliar.atualizarSupervisorAuxiliar(supervisorAuxiliar);
 
 				if (atualizou) {
-					System.out.println("Supervisor Auxiliar atualizado com sucesso");
+					JOptionPane.showMessageDialog(
+						null,
+						"Supervisor Auxiliar atualizado com sucesso",
+						"Sucesso",
+						JOptionPane.INFORMATION_MESSAGE
+					);
+
+					// FECHA A TELA DE ALTERAÇÃO
+					frameTelaAlterar.dispose();
+
+					// RECARREGA LISTA DO BANCO
+					List<SupervisorAuxiliar> novaLista =
+							daoSupervisorAuxiliar.listarSupervisorAuxiliar();
+
+					// ABRE A TELA DE LISTAGEM ATUALIZADA
+					TelaListarSupervisorAuxiliar telaListar =
+							new TelaListarSupervisorAuxiliar();
+					telaListar.listarSupervisorAuxiliar(novaLista);
+
 				} else {
-					System.out.println("Erro ao atualizar Supervisor Auxiliar");
+					JOptionPane.showMessageDialog(
+						null,
+						"Erro ao atualizar Supervisor Auxiliar",
+						"Erro",
+						JOptionPane.ERROR_MESSAGE
+					);
 				}
 
 				frameTelaAlterar.dispose();

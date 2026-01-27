@@ -167,8 +167,16 @@ public class DaoSupervisorAuxiliar {
 
 			preparaComando.setString(1, cpf);
 
-			preparaComando.executeUpdate();
-			deletado = true;
+			int linhasAfetadas = preparaComando.executeUpdate();
+
+			if (linhasAfetadas > 0) {
+				deletado = true;
+			} else {
+				deletado = false;
+			}
+
+			
+			
 
 		} catch (SQLException e) {
 			System.out.println("erro ao deletar supervisor auxiliar");

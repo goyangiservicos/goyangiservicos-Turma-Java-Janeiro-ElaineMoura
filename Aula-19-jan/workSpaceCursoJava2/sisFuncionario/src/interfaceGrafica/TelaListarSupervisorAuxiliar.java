@@ -70,6 +70,17 @@ public class TelaListarSupervisorAuxiliar {
 		
 		JButton botaoDeletar = new JButton("Deletar");
 		panelListarSupervisor.add(botaoDeletar);
+		
+		
+		JButton botaoVoltar = new JButton("Voltar");
+		panelListarSupervisor.add(botaoVoltar);
+		botaoVoltar.addActionListener(e -> {
+			frameListarSupervisor.dispose();
+
+			TelaPrincipal telaPrincipal = new TelaPrincipal();
+			telaPrincipal.menuPrincipal();
+		});
+
 
 			
 		frameListarSupervisor.setVisible(true);

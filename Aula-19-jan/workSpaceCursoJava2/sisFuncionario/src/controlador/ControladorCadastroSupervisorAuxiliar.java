@@ -93,6 +93,7 @@ public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 		}
 		case "Listar": {
 			telaListarSupervisorAuxiliar.listarSupervisorAuxiliar(repositorioSupervisorAuxiliarImplementacao.listarSupervisorAuxiliar()); 
+			frameCadastroSupervisorAuxiliar.dispose();
 
 			break;
 		}

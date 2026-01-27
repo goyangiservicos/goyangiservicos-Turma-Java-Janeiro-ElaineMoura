@@ -26,39 +26,51 @@ public class ControladorDeletarSupervisorAuxiliar implements ActionListener {
 
 		String cpf = textCpf.getText();
 
+		// 1) campo vazio
+		if (cpf == null || cpf.trim().isEmpty()) {
+			JOptionPane.showMessageDialog(
+				null,
+				"Digite um CPF para deletar",
+				"Atenção",
+				JOptionPane.WARNING_MESSAGE
+			);
+			return;
+		}
+
 		DaoSupervisorAuxiliar daoSupervisorAuxiliar = new DaoSupervisorAuxiliar();
 
 		boolean deletou = daoSupervisorAuxiliar.deletarSupervisorAuxiliar(cpf);
 
-		if (deletou) {
+		// 2) CPF não encontrado
+		if (!deletou) {
 			JOptionPane.showMessageDialog(
 				null,
-				"Supervisor Auxiliar deletado com sucesso",
-				"Sucesso",
-				JOptionPane.INFORMATION_MESSAGE
+				"CPF não encontrado",
+				"Atenção",
+				JOptionPane.WARNING_MESSAGE
 			);
-
-			// FECHA A TELA ATUAL
-			JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(textCpf);
-			frame.dispose();
-
-			// RECARREGA A LISTA DO BANCO
-			List<SupervisorAuxiliar> novaLista =
-					daoSupervisorAuxiliar.listarSupervisorAuxiliar();
-
-			// ABRE A TELA DE LISTAGEM ATUALIZADA
-			TelaListarSupervisorAuxiliar tela =
-					new TelaListarSupervisorAuxiliar();
-			tela.listarSupervisorAuxiliar(novaLista);
-
-		} else {
-			JOptionPane.showMessageDialog(
-				null,
-				"Erro ao deletar Supervisor Auxiliar",
-				"Erro",
-				JOptionPane.ERROR_MESSAGE
-			);
+			return;
 		}
-	}
-	}
 
+		// 3) sucesso
+		JOptionPane.showMessageDialog(
+			null,
+			"Supervisor Auxiliar deletado com sucesso",
+			"Sucesso",
+			JOptionPane.INFORMATION_MESSAGE
+		);
+
+		// fecha a tela atual
+		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(textCpf);
+		frame.dispose();
+
+		// recarrega lista
+		List<SupervisorAuxiliar> novaLista =
+				daoSupervisorAuxiliar.listarSupervisorAuxiliar();
+
+		// abre listagem atualizada
+		TelaListarSupervisorAuxiliar tela =
+				new TelaListarSupervisorAuxiliar();
+		tela.listarSupervisorAuxiliar(novaLista);
+	}
+}
