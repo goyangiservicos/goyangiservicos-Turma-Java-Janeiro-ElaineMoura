@@ -13,40 +13,40 @@ public class ControladorTelaListarSupervisorAuxiliar implements ActionListener {
 
 	JTextField textCpf;
 	List<SupervisorAuxiliar> listaSupervisorAuxiliar;
-	
-	TelaDetalharSupervisorAuxiliar telaDetalharSupervisorAuxiliar = new TelaDetalharSupervisorAuxiliar();
-	
 
-	public ControladorTelaListarSupervisorAuxiliar(JTextField textCpf, List<SupervisorAuxiliar> listaSupervisorAuxiliar) {
-		
+	TelaDetalharSupervisorAuxiliar telaDetalharSupervisorAuxiliar = new TelaDetalharSupervisorAuxiliar();
+
+	public ControladorTelaListarSupervisorAuxiliar(JTextField textCpf,
+			List<SupervisorAuxiliar> listaSupervisorAuxiliar) {
+
 		this.textCpf = textCpf;
 		this.listaSupervisorAuxiliar = listaSupervisorAuxiliar;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		
+
 		SupervisorAuxiliar supervisorAuxiliar = buscarSupervisorAuxiliarPorCpf();
 
 		if (supervisorAuxiliar == null) {
 			return;
 		}
-		
+
 		telaDetalharSupervisorAuxiliar.detalharSupervisorAuxiliar(buscarSupervisorAuxiliarPorCpf());
-		
+
 	}
-	
+
 	public SupervisorAuxiliar buscarSupervisorAuxiliarPorCpf() {
-		
-		for(SupervisorAuxiliar supervisorAuxiliar: listaSupervisorAuxiliar) {
-			if(supervisorAuxiliar.getCpf().equals(textCpf.getText())) {
+
+		for (SupervisorAuxiliar supervisorAuxiliar : listaSupervisorAuxiliar) {
+			if (supervisorAuxiliar.getCpf().equals(textCpf.getText())) {
 				return supervisorAuxiliar;
 			}
 		}
-		
+
 		return null;
 	}
+	
+	
 
 }
-

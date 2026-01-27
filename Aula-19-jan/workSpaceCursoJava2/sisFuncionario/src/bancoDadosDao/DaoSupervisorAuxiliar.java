@@ -151,5 +151,43 @@ public class DaoSupervisorAuxiliar {
 		return atualizado;
 	}
 
+	public boolean deletarSupervisorAuxiliar(String cpf) {
+
+		boolean deletado = false;
+
+		String comandoSqlDelete = "delete from supervisor_auxiliar where cpf = ?";
+
+		FabricaDeConexoes fabricaConexoesSisFuncionario = new FabricaDeConexoes();
+		Connection conexaoSisFuncionario = null;
+		PreparedStatement preparaComando = null;
+
+		try {
+			conexaoSisFuncionario = fabricaConexoesSisFuncionario.criarConexaoSis_funcionario();
+			preparaComando = conexaoSisFuncionario.prepareStatement(comandoSqlDelete);
+
+			preparaComando.setString(1, cpf);
+
+			preparaComando.executeUpdate();
+			deletado = true;
+
+		} catch (SQLException e) {
+			System.out.println("erro ao deletar supervisor auxiliar");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (conexaoSisFuncionario != null) {
+					conexaoSisFuncionario.close();
+				}
+				if (preparaComando != null) {
+					preparaComando.close();
+				}
+			} catch (SQLException e) {
+				System.out.println("erro ao fechar a conexao no banco");
+				e.printStackTrace();
+			}
+		}
+
+		return deletado;
+	}
 
 }

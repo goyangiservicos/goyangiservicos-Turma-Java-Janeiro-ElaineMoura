@@ -1,41 +1,53 @@
 package interfaceGrafica;
-import java.awt.GridLayout;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JButton;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import interfaceGrafica.TelaAlterarSupervisorAuxiliar;
 
 import entidade.SupervisorAuxiliar;
 
 public class TelaDetalharSupervisorAuxiliar {
 
-
-	
 	public void detalharSupervisorAuxiliar(SupervisorAuxiliar supervisorAuxiliar) {
-		
-		GridLayout grid = new GridLayout(0,2);
-		
+
 		JFrame frameTelaSupervisorAuxiliar = new JFrame("Detalhes do Supervisor Auxiliar");
-		frameTelaSupervisorAuxiliar.setSize(300,180);
-		
+		frameTelaSupervisorAuxiliar.setSize(350, 220);
+
 		JPanel panelTelaSupervisorAuxiliar = new JPanel();
-		panelTelaSupervisorAuxiliar.setLayout(grid);
-		
-		panelTelaSupervisorAuxiliar.add(new JLabel("CPF:"));
-		panelTelaSupervisorAuxiliar.add(new JLabel(supervisorAuxiliar.getCpf()));
-		
-		
-		panelTelaSupervisorAuxiliar.add(new JLabel("NOME:"));
-		panelTelaSupervisorAuxiliar.add(new JLabel(supervisorAuxiliar.getNome()));
-		
-		panelTelaSupervisorAuxiliar.add(new JLabel("PATIO:"));
-		panelTelaSupervisorAuxiliar.add(new JLabel(supervisorAuxiliar.getPatio()));
-		
-		
+		panelTelaSupervisorAuxiliar.setLayout(new GridBagLayout());
+
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(6, 6, 6, 6);
+		gbc.anchor = GridBagConstraints.WEST;
+
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		panelTelaSupervisorAuxiliar.add(new JLabel("CPF:"), gbc);
+
+		gbc.gridx = 1;
+		panelTelaSupervisorAuxiliar.add(new JLabel(supervisorAuxiliar.getCpf()), gbc);
+
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		panelTelaSupervisorAuxiliar.add(new JLabel("NOME:"), gbc);
+
+		gbc.gridx = 1;
+		panelTelaSupervisorAuxiliar.add(new JLabel(supervisorAuxiliar.getNome()), gbc);
+
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		panelTelaSupervisorAuxiliar.add(new JLabel("PATIO:"), gbc);
+
+		gbc.gridx = 1;
+		panelTelaSupervisorAuxiliar.add(new JLabel(supervisorAuxiliar.getPatio()), gbc);
+
 		JButton botaoEditar = new JButton("Editar");
 
 		botaoEditar.addActionListener(new ActionListener() {
@@ -53,22 +65,13 @@ public class TelaDetalharSupervisorAuxiliar {
 			}
 		});
 
-		panelTelaSupervisorAuxiliar.add(new JLabel(""));
-		panelTelaSupervisorAuxiliar.add(botaoEditar);
-		frameTelaSupervisorAuxiliar.dispose();
+		gbc.gridx = 1;
+		gbc.gridy = 3;
+		gbc.anchor = GridBagConstraints.CENTER;
+		panelTelaSupervisorAuxiliar.add(botaoEditar, gbc);
 
-		
-		
 		frameTelaSupervisorAuxiliar.add(panelTelaSupervisorAuxiliar);
+		frameTelaSupervisorAuxiliar.setLocationRelativeTo(null);
 		frameTelaSupervisorAuxiliar.setVisible(true);
-		
-		
-		
-		
-		
-		
-		
 	}
-	
-	
 }

@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import controlador.ControladorDeletarSupervisorAuxiliar;
 import controlador.ControladorTelaListarSupervisorAuxiliar;
 import entidade.SupervisorAuxiliar;
 public class TelaListarSupervisorAuxiliar {
@@ -41,7 +42,7 @@ public class TelaListarSupervisorAuxiliar {
 		String [] nomeColunas = {"CPF", "NOME", "PATIO"};
 		
 		JFrame frameListarSupervisor = new JFrame();
-		frameListarSupervisor.setSize(600, 600);
+		frameListarSupervisor.setSize(900, 600);
 		
 		JTable tabelaSupervisor = new JTable(tabelaString, nomeColunas);
 		tabelaSupervisor.setSize(1000,1000);
@@ -65,12 +66,22 @@ public class TelaListarSupervisorAuxiliar {
 		panelListarSupervisor.add(botaoDetalhar);
 		frameListarSupervisor.setLocationRelativeTo(frameListarSupervisor);
 		frameListarSupervisor.add(panelListarSupervisor);
+		
+		
+		JButton botaoDeletar = new JButton("Deletar");
+		panelListarSupervisor.add(botaoDeletar);
+
 			
 		frameListarSupervisor.setVisible(true);
 		
 		ControladorTelaListarSupervisorAuxiliar controladorTelaListarSupervisorAuxiliar = new ControladorTelaListarSupervisorAuxiliar(textCpf, listaSupervisores);
 		botaoDetalhar.addActionListener(controladorTelaListarSupervisorAuxiliar);
 		
+		botaoDeletar.addActionListener(
+				new ControladorDeletarSupervisorAuxiliar(textCpf)
+			);
+
 	}
+	
 
 }

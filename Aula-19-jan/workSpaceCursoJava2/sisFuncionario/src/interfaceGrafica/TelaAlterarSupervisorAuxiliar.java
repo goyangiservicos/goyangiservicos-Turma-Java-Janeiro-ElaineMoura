@@ -1,6 +1,9 @@
 package interfaceGrafica;
 
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,38 +12,63 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import bancoDadosDao.DaoSupervisorAuxiliar;
-
-
 import entidade.SupervisorAuxiliar;
 
 public class TelaAlterarSupervisorAuxiliar {
 
 	public void alterarSupervisorAuxiliar(SupervisorAuxiliar supervisorAuxiliar) {
 
-		GridLayout grid = new GridLayout(0, 2);
-
 		JFrame frameTelaAlterar = new JFrame("Alterar Supervisor Auxiliar");
-		frameTelaAlterar.setSize(300, 200);
+		frameTelaAlterar.setSize(420, 260);
 
 		JPanel panelTelaAlterar = new JPanel();
-		panelTelaAlterar.setLayout(grid);
+		panelTelaAlterar.setLayout(new GridBagLayout());
+
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(10, 12, 10, 12);
+		gbc.anchor = GridBagConstraints.WEST;
+
+		Font fonteLabel = new Font("Dialog", Font.BOLD, 14);
+		Font fonteCampo = new Font("Dialog", Font.PLAIN, 14);
 
 		// CPF (não altera)
-		panelTelaAlterar.add(new JLabel("CPF:"));
-		JTextField textCpf = new JTextField(supervisorAuxiliar.getCpf());
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		JLabel lblCpf = new JLabel("CPF:");
+		lblCpf.setFont(fonteLabel);
+		panelTelaAlterar.add(lblCpf, gbc);
+
+		gbc.gridx = 1;
+		JTextField textCpf = new JTextField(supervisorAuxiliar.getCpf(), 18);
+		textCpf.setFont(fonteCampo);
 		textCpf.setEditable(false);
-		panelTelaAlterar.add(textCpf);
+		panelTelaAlterar.add(textCpf, gbc);
 
 		// Nome
-		panelTelaAlterar.add(new JLabel("NOME:"));
-		JTextField textNome = new JTextField(supervisorAuxiliar.getNome());
-		panelTelaAlterar.add(textNome);
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		JLabel lblNome = new JLabel("NOME:");
+		lblNome.setFont(fonteLabel);
+		panelTelaAlterar.add(lblNome, gbc);
+
+		gbc.gridx = 1;
+		JTextField textNome = new JTextField(supervisorAuxiliar.getNome(), 18);
+		textNome.setFont(fonteCampo);
+		panelTelaAlterar.add(textNome, gbc);
 
 		// Patio
-		panelTelaAlterar.add(new JLabel("PATIO:"));
-		JTextField textPatio = new JTextField(supervisorAuxiliar.getPatio());
-		panelTelaAlterar.add(textPatio);
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		JLabel lblPatio = new JLabel("PATIO:");
+		lblPatio.setFont(fonteLabel);
+		panelTelaAlterar.add(lblPatio, gbc);
+
+		gbc.gridx = 1;
+		JTextField textPatio = new JTextField(supervisorAuxiliar.getPatio(), 18);
+		textPatio.setFont(fonteCampo);
+		panelTelaAlterar.add(textPatio, gbc);
 
 		JButton botaoSalvar = new JButton("Salvar");
 
@@ -70,10 +98,14 @@ public class TelaAlterarSupervisorAuxiliar {
 			}
 		});
 
-		panelTelaAlterar.add(new JLabel(""));
-		panelTelaAlterar.add(botaoSalvar);
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		gbc.gridwidth = 2;
+		gbc.anchor = GridBagConstraints.CENTER;
+		panelTelaAlterar.add(botaoSalvar, gbc);
 
 		frameTelaAlterar.add(panelTelaAlterar);
+		frameTelaAlterar.setLocationRelativeTo(null);
 		frameTelaAlterar.setVisible(true);
 	}
 }

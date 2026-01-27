@@ -1,4 +1,8 @@
 package interfaceGrafica;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,41 +20,62 @@ public class TelaCadastroSupervisorAuxiliar {
 				String patio = "Digite o patio";
 
 				JFrame frameCadastroSupervisorAuxiliar = new JFrame();
-				frameCadastroSupervisorAuxiliar.setSize(500, 500);
+				frameCadastroSupervisorAuxiliar.setSize(500, 400);
 
 				JPanel panelSupervisorAuxiliar = new JPanel();
+				panelSupervisorAuxiliar.setLayout(new GridBagLayout());
 
-				JLabel labelNome = new JLabel(nomeSupervisorAuxiliar);
-				panelSupervisorAuxiliar.add(labelNome);
-				JTextField textNome = new JTextField(10);
-				panelSupervisorAuxiliar.add(textNome);
+				GridBagConstraints gbc = new GridBagConstraints();
+				gbc.insets = new Insets(8, 8, 8, 8);
+				gbc.fill = GridBagConstraints.HORIZONTAL;
 
-				JLabel labelCpf = new JLabel(cpf);
-				panelSupervisorAuxiliar.add(labelCpf);
+				gbc.gridx = 0;
+				gbc.gridy = 0;
+				panelSupervisorAuxiliar.add(new JLabel(nomeSupervisorAuxiliar), gbc);
 
-				JTextField textCpf = new JTextField(10);
-				panelSupervisorAuxiliar.add(textCpf);
+				gbc.gridx = 1;
+				JTextField textNome = new JTextField(15);
+				panelSupervisorAuxiliar.add(textNome, gbc);
 
-				JLabel labelEmail = new JLabel(email);
-				panelSupervisorAuxiliar.add(labelEmail);
+				gbc.gridx = 0;
+				gbc.gridy = 1;
+				panelSupervisorAuxiliar.add(new JLabel(cpf), gbc);
 
-				JTextField textEmail = new JTextField(10);
-				panelSupervisorAuxiliar.add(textEmail);
+				gbc.gridx = 1;
+				JTextField textCpf = new JTextField(15);
+				panelSupervisorAuxiliar.add(textCpf, gbc);
 
-				JLabel labelSupervisorAuxiliar = new JLabel(patio);
-				panelSupervisorAuxiliar.add(labelSupervisorAuxiliar);
-				JTextField textSupervisorAuxiliar = new JTextField(10);
-				panelSupervisorAuxiliar.add(textSupervisorAuxiliar);
+				gbc.gridx = 0;
+				gbc.gridy = 2;
+				panelSupervisorAuxiliar.add(new JLabel(email), gbc);
 
+				gbc.gridx = 1;
+				JTextField textEmail = new JTextField(15);
+				panelSupervisorAuxiliar.add(textEmail, gbc);
+
+				gbc.gridx = 0;
+				gbc.gridy = 3;
+				panelSupervisorAuxiliar.add(new JLabel(patio), gbc);
+
+				gbc.gridx = 1;
+				JTextField textSupervisorAuxiliar = new JTextField(15);
+				panelSupervisorAuxiliar.add(textSupervisorAuxiliar, gbc);
+
+				gbc.gridx = 0;
+				gbc.gridy = 4;
 				JButton botaoCadastrarSupervisorAuxiliar = new JButton("cadastrar");
-				panelSupervisorAuxiliar.add(botaoCadastrarSupervisorAuxiliar);
+				panelSupervisorAuxiliar.add(botaoCadastrarSupervisorAuxiliar, gbc);
 
+				gbc.gridx = 1;
 				JButton botaoMenuInicial = new JButton("menu Inicial");
-				panelSupervisorAuxiliar.add(botaoMenuInicial);
-				
+				panelSupervisorAuxiliar.add(botaoMenuInicial, gbc);
+
+				gbc.gridx = 1;
+				gbc.gridy = 5;
 				JButton botaoListar = new JButton("Listar");
-				panelSupervisorAuxiliar.add(botaoListar);
+				panelSupervisorAuxiliar.add(botaoListar, gbc);
 				
+
 				frameCadastroSupervisorAuxiliar.add(panelSupervisorAuxiliar);
 				frameCadastroSupervisorAuxiliar.setLocationRelativeTo(frameCadastroSupervisorAuxiliar);
 				frameCadastroSupervisorAuxiliar.setVisible(true);
@@ -62,5 +87,3 @@ public class TelaCadastroSupervisorAuxiliar {
 				botaoListar.addActionListener(controladorCadastroSupervisorAuxiliar);
 			}
 		}
-
-
