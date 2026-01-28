@@ -78,8 +78,9 @@ public class TelaAlterarSupervisorAuxiliar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				supervisorAuxiliar.setNome(textNome.getText());
-				supervisorAuxiliar.setPatio(textPatio.getText());
+				supervisorAuxiliar.setNome(textoMaiusculo(textNome.getText()));
+				supervisorAuxiliar.setPatio(textoMaiusculo(textPatio.getText()));
+
 
 				System.out.println("Salvar Supervisor Auxiliar");
 				System.out.println("CPF: " + supervisorAuxiliar.getCpf());
@@ -132,5 +133,9 @@ public class TelaAlterarSupervisorAuxiliar {
 		frameTelaAlterar.add(panelTelaAlterar);
 		frameTelaAlterar.setLocationRelativeTo(null);
 		frameTelaAlterar.setVisible(true);
+	}
+	public String textoMaiusculo (String texto) {
+		return texto.toUpperCase();
+		
 	}
 }

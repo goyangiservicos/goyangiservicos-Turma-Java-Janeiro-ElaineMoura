@@ -10,7 +10,8 @@ public class RepositorioSupervisorAuxiliarImplementacao implements RepositorioSu
 
 	@Override
 	public boolean salvarSupervisorAuxiliar(SupervisorAuxiliar supervisorAuxiliar) {
-		// TODO Auto-generated method stub
+		supervisorAuxiliar.setNome(textoMaiusculo(supervisorAuxiliar.getNome()));
+		supervisorAuxiliar.setPatio(textoMaiusculo(supervisorAuxiliar.getPatio()));
 		return daoSupervisorAuxiliar.salvarNoBanco(supervisorAuxiliar);
 	}
 
@@ -20,7 +21,10 @@ public class RepositorioSupervisorAuxiliarImplementacao implements RepositorioSu
 		return daoSupervisorAuxiliar.listarSupervisorAuxiliar();
 	}
 
-	
+	public String textoMaiusculo (String texto) {
+		return texto.toUpperCase();
+		
+	}
 
 }
 

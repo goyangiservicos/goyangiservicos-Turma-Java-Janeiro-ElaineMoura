@@ -23,7 +23,7 @@ public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 	JFrame frameCadastroSupervisorAuxiliar;
 	JFrame frameTelaPrincipal;
 
-	public ControladorCadastroSupervisorAuxiliar(JTextField nome, JTextField cpf, JTextField email, JTextField patio,
+	public ControladorCadastroSupervisorAuxiliar(JTextField nome, JTextField cpf, JTextField email,JTextField patio,
 			JFrame frameCadastroSupervisorAuxiliar, JFrame frameTelaPrincipal) {
 		super();
 		this.nome = nome;
@@ -40,7 +40,7 @@ public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 		System.out.println("iniciar cadastro");
 		System.out.println(nome.getText());
 		System.out.println(cpf.getText());
-		System.out.println(email.getText());
+	//System.out.println(email.getText());
 		System.out.println(patio.getText());
 
 		switch (e.getActionCommand()) {
@@ -48,6 +48,17 @@ public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 
 			ValidacaoTela validacaoTela = new ValidacaoTela();
 			validacaoTela.setCpf(cpf.getText());
+			
+			if (nome.getText() == null || nome.getText().trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Nome vazio, informe o nome.");
+				return;
+			}
+
+			// valida pátio
+			if (patio.getText() == null || patio.getText().trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Patio vazio, informe o patio.");
+				return;
+			}
 			// validacoes de cpf vazio, se tem 11 caracteres e se eh valido
 			if (cpf.getText() == null || cpf.getText().trim().isEmpty()) {
 				JOptionPane.showMessageDialog(null, "CPF vazio, informe o CPF.");
@@ -66,7 +77,7 @@ public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 
 			} else {
 				supervisorAuxiliar.setCpf(cpf.getText());
-				supervisorAuxiliar.setEmail(email.getText());
+				//supervisorAuxiliar.setEmail(email.getText());
 				supervisorAuxiliar.setPatio(patio.getText());;
 
 				if (repositorioSupervisorAuxiliarImplementacao.salvarSupervisorAuxiliar(supervisorAuxiliar)) {
@@ -75,7 +86,7 @@ public class ControladorCadastroSupervisorAuxiliar implements ActionListener {
 
 					nome.setText(null);
 					cpf.setText(null);
-					email.setText(null);
+					//email.setText(null);
 					patio.setText(null);
 
 				} else {

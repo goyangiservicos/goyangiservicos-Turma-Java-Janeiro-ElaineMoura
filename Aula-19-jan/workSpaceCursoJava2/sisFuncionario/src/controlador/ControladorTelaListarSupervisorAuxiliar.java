@@ -26,14 +26,19 @@ public class ControladorTelaListarSupervisorAuxiliar implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		if (textCpf.getText() == null || textCpf.getText().trim().isEmpty()) {
+			javax.swing.JOptionPane.showMessageDialog(null, "Informe o CPF para detalhar.");
+			return;
+		}
+
 		SupervisorAuxiliar supervisorAuxiliar = buscarSupervisorAuxiliarPorCpf();
 
 		if (supervisorAuxiliar == null) {
+			javax.swing.JOptionPane.showMessageDialog(null, "CPF não encontrado.");
 			return;
 		}
 
 		telaDetalharSupervisorAuxiliar.detalharSupervisorAuxiliar(buscarSupervisorAuxiliarPorCpf());
-
 	}
 
 	public SupervisorAuxiliar buscarSupervisorAuxiliarPorCpf() {
