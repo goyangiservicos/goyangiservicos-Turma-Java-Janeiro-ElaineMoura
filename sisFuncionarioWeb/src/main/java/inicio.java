@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class inicio
  */
-@WebServlet("/inicio")
+@WebServlet("/inicioControlador")
 public class inicio extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,19 +30,8 @@ public class inicio extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// endereco- solicitando uma requisicao chama o doget, recebendo um response
-
-		response.setContentType("text/html; charset=UTF-8");// tipo do documento criado
-		String html = "<!DOCTYPE HTML>\r\n" + "\r\n" + "<html lang=\"pt-br\">\r\n" + "<head>\r\n"
-				+ "<meta charset = 'UTF-8>\r\n" + "<title>Teste Get/Post</title>\r\n" + "</head>\r\n"
-				+ "<body syyle = font-family:Arial; padding:20px'>\r\n" + "\r\n" + "<h2>Teste GET -> POST</h2>\r\n"
-				+ "<form method='post' action='" + request.getContextPath() + "/inicio'>\r\n"
-				+ "<label>Digite algo:</label><br>\r\n" + "<input type='text'name='texto' required>\r\n"
-				+ "<br><br>\r\n" + "<button type='submit'>Enviar</button>\r\n" + "</form>\r\n" + "</body>\r\n"
-				+ "</html>";
-		// PrintWriter writer = response.getWriter();// envia pra tela
-		// writer.println(html);// envia pra tela
-		response.getOutputStream().write(html.getBytes(StandardCharsets.UTF_8)); // envia tela tambem
+		request.getRequestDispatcher("/inicio.jsp").forward(request, response);
+		// se chamar no browser iniciocontrolador vai direcionar para inicio.jsp
 	}
 
 	/**
@@ -52,12 +41,14 @@ public class inicio extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// quando passamos informacoes para pagina ela envia a resposta para o dopost
-	
+		
+		String texto = "O texto Digitado foi: " + request.getParameter("texto");
 
-		 String texto = "O texto Digitado foi: " + request.getParameter("texto");
-		    response.getOutputStream().write(texto.getBytes(StandardCharsets.UTF_8));
-
-		    doGet(request, response);
+		// response.getOutputStream().write(texto.getBytes(StandardCharsets.UTF_8));
+		request.setAttribute("texto", texto); //atributo para trabalhar na jsp pq sera direcionado para jsp
+		request.getRequestDispatcher("/inicio.jsp").forward(request, response);
+		doGet(request, response);
+		
 	}
 
 }
