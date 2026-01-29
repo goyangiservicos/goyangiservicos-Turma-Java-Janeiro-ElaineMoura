@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class inicio
  */
 @WebServlet("/inicioControlador")
-public class inicio extends HttpServlet {
+public class inicioControlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public inicio() {
+	public inicioControlador() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
