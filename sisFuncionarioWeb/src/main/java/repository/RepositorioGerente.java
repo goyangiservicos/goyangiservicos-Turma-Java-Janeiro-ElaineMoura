@@ -9,4 +9,6 @@ public  interface RepositorioGerente {
 	public  boolean salvarGerente(Gerente gerente); // Assinatura
 	
 	public List<Gerente> listarGerente();
+
+	boolean deletarGerente(String cpf);
 }

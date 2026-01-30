@@ -32,10 +32,28 @@ public class SupervisorAuxiliarController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	
+
+		String acao = request.getParameter("acao");
+		String cpf = request.getParameter("cpf");
+		
+		
+		
 		RepositorioSupervisorAuxiliarImplementacao repositorioSupervisorAuxiliarImplementacao = new RepositorioSupervisorAuxiliarImplementacao();
+		
+		//para deletar
+		if ("deletar".equals(acao) && cpf != null && !cpf.isEmpty()) {
+    System.out.println("entrou aqui");
+    repositorioSupervisorAuxiliarImplementacao.deletarSupervisorAuxiliar(cpf);
+}
+		
 		request.setAttribute("listarSupervisorAuxiliar", repositorioSupervisorAuxiliarImplementacao.listarSupervisorAuxiliar());
 		request.getRequestDispatcher("/SupervisorAuxiliarCrud.jsp")
          .forward(request, response);
+	
+	
+	
+	
 	}
 
 	/**

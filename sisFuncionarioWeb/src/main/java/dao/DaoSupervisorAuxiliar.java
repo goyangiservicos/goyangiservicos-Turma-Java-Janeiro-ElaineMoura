@@ -116,7 +116,7 @@ public class DaoSupervisorAuxiliar {
 		boolean atualizado = false;
 
 		String comandoSqlUpdate =
-				"update supervisor_auxiliar set nome = ?, patio = ? where cpf = ?";
+				"update supervisor_auxiliar set nome = ?, email = ? where cpf = ?";
 
 		FabricaDeConexoes fabricaConexoesSisFuncionario = new FabricaDeConexoes();
 		Connection conexaoSisFuncionario = null;

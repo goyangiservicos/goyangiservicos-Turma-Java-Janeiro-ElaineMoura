@@ -122,6 +122,47 @@ public class DaoGerente {
 			return listaGerente;
 		}
 		
-		
+		public boolean deletarGerente(String cpf) {
+
+			boolean deletar = false;
+
+			String comandoSqlDelete = "DELETE FROM gerente WHERE cpf = ?";
+
+			FabricaDeConexoes fabricaConexoesSisFuncionario = new FabricaDeConexoes();
+
+			Connection conexaoSisFuncionario = null;
+			PreparedStatement preparaComando = null;
+
+			try {
+				conexaoSisFuncionario = fabricaConexoesSisFuncionario.criarConexaoSis_funcionario();
+				preparaComando = conexaoSisFuncionario.prepareStatement(comandoSqlDelete);
+
+				preparaComando.setString(1, cpf);
+
+				int linhasAfetadas = preparaComando.executeUpdate();
+
+				if (linhasAfetadas > 0) {
+					deletar = true;
+				}
+
+			} catch (SQLException e) {
+				System.out.println("erro ao deletar gerente no banco");
+				e.printStackTrace();
+			} finally {
+				try {
+					if (preparaComando != null) {
+						preparaComando.close();
+					}
+					if (conexaoSisFuncionario != null) {
+						conexaoSisFuncionario.close();
+					}
+				} catch (SQLException e) {
+					System.out.println("erro ao fechar a conexao no banco");
+					e.printStackTrace();
+				}
+			}
+
+			return deletar;
+		}
 
 	}

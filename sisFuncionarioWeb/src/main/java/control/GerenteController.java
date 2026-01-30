@@ -37,9 +37,19 @@ public class GerenteController extends HttpServlet {
 		
 		RepositorioGerenteImplementacao repositorioGerenteImplementacao = new RepositorioGerenteImplementacao();
 		//repositorioGerenteImplementacao.salvarGerente(gerente);
+		
+		String acao = request.getParameter("acao");
+		String cpf = request.getParameter("cpf");
+		
+		//para deletar
+				if ("deletar".equals(acao) && cpf != null && !cpf.isEmpty()) {
+		    System.out.println("entrou aqui");
+		    repositorioGerenteImplementacao.deletarGerente(cpf);
+		}
+		
 		request.setAttribute("listarGerente", repositorioGerenteImplementacao.listarGerente());
-		request.getRequestDispatcher("/GerenteCrud.jsp")
-	       .forward(request, response);
+		request.getRequestDispatcher("/GerenteCrud.jsp").forward(request, response);
+		
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	
 	}

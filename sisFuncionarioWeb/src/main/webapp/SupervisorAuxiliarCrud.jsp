@@ -29,6 +29,7 @@
         <th>CPF</th>
         <th>NOME</th>
         <th>PATIO</th>
+          <th>ACOES</th>
     </tr>
 
     <%
@@ -40,6 +41,14 @@
                     <td><%= supervisorAuxiliar.getCpf() %></td>
                     <td><%= supervisorAuxiliar.getNome() %></td>
                     <td><%= supervisorAuxiliar.getPatio()%></td>
+               <td>
+                    <form method="get" action= "<%=request.getContextPath()%>/SupervisorAuxiliarController" style="display:inline;">
+                    <input type="hidden" name="acao" value ="deletar"> 
+                    <input type="hidden" name="cpf" value ="<%=supervisorAuxiliar.getCpf() %>"> 
+                    <button type="submit" onclick="return confirm('Tem certeza que deseja deletar?')">
+                    deletar
+                    </button>
+                    </form></td>
                 </tr>
     <%
             }

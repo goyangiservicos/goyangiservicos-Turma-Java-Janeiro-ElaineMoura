@@ -10,4 +10,6 @@ public interface RepositorioSupervisorAuxiliar {
 	
 	public List<SupervisorAuxiliar> listarSupervisorAuxiliar();
 
+	boolean deletarSupervisorAuxiliar(String cpf);
+
 }

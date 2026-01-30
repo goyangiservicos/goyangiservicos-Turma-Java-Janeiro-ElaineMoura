@@ -27,7 +27,10 @@ public class RepositorioSupervisorAuxiliarImplementacao implements RepositorioSu
 		return texto.toUpperCase();
 		
 	}
-
+	@Override
+    public boolean deletarSupervisorAuxiliar(String cpf) {
+        return daoSupervisorAuxiliar.deletarSupervisorAuxiliar(cpf);
+    }
 }
 
 
