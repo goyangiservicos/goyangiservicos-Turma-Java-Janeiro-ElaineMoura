@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.SupervisorAuxiliar" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,6 +19,33 @@
 			name="patio" required="required"> <br> <br>
 		<button type="submit">Enviar</button>
 	</form>
+	
+	
+	
+	<h3>LISTA DE SUPERVISOR AUXILIAR</h3>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>CPF</th>
+        <th>NOME</th>
+        <th>PATIO</th>
+    </tr>
+
+    <%
+        List<SupervisorAuxiliar> lista = (List<SupervisorAuxiliar>) request.getAttribute("listarSupervisorAuxiliar");
+        if (lista != null) {
+            for (SupervisorAuxiliar supervisorAuxiliar : lista) {
+    %>
+                <tr>
+                    <td><%= supervisorAuxiliar.getCpf() %></td>
+                    <td><%= supervisorAuxiliar.getNome() %></td>
+                    <td><%= supervisorAuxiliar.getPatio()%></td>
+                </tr>
+    <%
+            }
+        }
+    %>
+</table>
 </body>
 </html>
 

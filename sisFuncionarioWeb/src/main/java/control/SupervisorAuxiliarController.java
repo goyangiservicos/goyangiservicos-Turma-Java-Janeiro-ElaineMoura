@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.SupervisorAuxiliar;
+import repository.RepositorioGerenteImplementacao;
 import repository.RepositorioSupervisorAuxiliarImplementacao;
 
 /**
@@ -31,7 +32,9 @@ public class SupervisorAuxiliarController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		 request.getRequestDispatcher("/SupervisorAuxiliarCrud.jsp")
+		RepositorioSupervisorAuxiliarImplementacao repositorioSupervisorAuxiliarImplementacao = new RepositorioSupervisorAuxiliarImplementacao();
+		request.setAttribute("listarSupervisorAuxiliar", repositorioSupervisorAuxiliarImplementacao.listarSupervisorAuxiliar());
+		request.getRequestDispatcher("/SupervisorAuxiliarCrud.jsp")
          .forward(request, response);
 	}
 

@@ -35,11 +35,13 @@ public class GerenteController extends HttpServlet {
 		//gerente.setNome("ELAINE");
 		//gerente.setGerencia("GERENCIA GERAL");
 		
-		//RepositorioGerenteImplementacao repositorioGerenteImplementacao = new RepositorioGerenteImplementacao();
+		RepositorioGerenteImplementacao repositorioGerenteImplementacao = new RepositorioGerenteImplementacao();
 		//repositorioGerenteImplementacao.salvarGerente(gerente);
+		request.setAttribute("listarGerente", repositorioGerenteImplementacao.listarGerente());
 		request.getRequestDispatcher("/GerenteCrud.jsp")
 	       .forward(request, response);
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+	
 	}
 
 	/**
