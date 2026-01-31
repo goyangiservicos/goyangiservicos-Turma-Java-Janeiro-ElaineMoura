@@ -24,6 +24,15 @@ public class RepositorioGerenteImplementacao implements RepositorioGerente {
     public boolean deletarGerente(String cpf) {
         return daoGerente.deletarGerente(cpf);
     }
-	
 
+	@Override
+	public boolean atualizarGerente(Gerente gerente) {
+		// TODO Auto-generated method stub
+		   return daoGerente.atualizarGerente(gerente);
+	}
+	
+	@Override
+	public Gerente buscarGerentePorCpf(String cpf) {
+	    return daoGerente.buscarGerentePorCpf(cpf);
+	}
 }

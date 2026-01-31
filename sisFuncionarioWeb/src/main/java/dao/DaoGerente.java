@@ -164,5 +164,95 @@ public class DaoGerente {
 
 			return deletar;
 		}
+		public boolean atualizarGerente(Gerente gerente) {
+
+			boolean atualizado = false;
+
+			String comandoSqlUpdate =
+					"update gerente set nome = ?, gerencia = ? where cpf = ?";
+
+			FabricaDeConexoes fabricaConexoesSisFuncionario = new FabricaDeConexoes();
+			Connection conexaoSisFuncionario = null;
+			PreparedStatement preparaComando = null;
+
+			try {
+				conexaoSisFuncionario = fabricaConexoesSisFuncionario.criarConexaoSis_funcionario();
+				preparaComando = conexaoSisFuncionario.prepareStatement(comandoSqlUpdate);
+
+				preparaComando.setString(1, gerente.getNome());
+				preparaComando.setString(2, gerente.getGerencia());
+				preparaComando.setString(3, gerente.getCpf()); // CPF só no WHERE
+
+				preparaComando.executeUpdate();
+				atualizado = true;
+
+			} catch (SQLException e) {
+				System.out.println("erro ao atualizar gerente");
+				e.printStackTrace();
+			} finally {
+				try {
+					if (conexaoSisFuncionario != null) {
+						conexaoSisFuncionario.close();
+					}
+					if (preparaComando != null) {
+						preparaComando.close();
+					}
+				} catch (SQLException e) {
+					System.out.println("erro ao fechar a conexao no banco");
+					e.printStackTrace();
+				}
+			}
+
+			return atualizado;
+		}
+		
+		public Gerente buscarGerentePorCpf(String cpf) {
+
+		    Gerente gerente = null;
+
+		    String comandoSql = "SELECT * FROM gerente WHERE cpf = ?";
+
+		    FabricaDeConexoes fabricaConexoesSisFuncionario = new FabricaDeConexoes();
+		    Connection conexaoSisFuncionario = null;
+		    PreparedStatement preparaComando = null;
+		    ResultSet resultado = null;
+
+		    try {
+		        conexaoSisFuncionario = fabricaConexoesSisFuncionario.criarConexaoSis_funcionario();
+		        preparaComando = conexaoSisFuncionario.prepareStatement(comandoSql);
+
+		        preparaComando.setString(1, cpf);
+
+		        resultado = preparaComando.executeQuery();
+
+		        if (resultado.next()) {
+		            gerente = new Gerente();
+		            gerente.setCpf(resultado.getString("cpf"));
+		            gerente.setNome(resultado.getString("nome"));
+		            gerente.setGerencia(resultado.getString("gerencia"));
+		        }
+
+		    } catch (SQLException e) {
+		        System.out.println("erro ao buscar gerente por cpf");
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            if (resultado != null) {
+		                resultado.close();
+		            }
+		            if (preparaComando != null) {
+		                preparaComando.close();
+		            }
+		            if (conexaoSisFuncionario != null) {
+		                conexaoSisFuncionario.close();
+		            }
+		        } catch (SQLException e) {
+		            System.out.println("erro ao fechar conexao no banco");
+		            e.printStackTrace();
+		        }
+		    }
+
+		    return gerente;
+		}
 
 	}

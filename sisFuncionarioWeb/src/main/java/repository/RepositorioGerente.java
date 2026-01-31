@@ -4,11 +4,15 @@ import java.util.List;
 
 import model.Gerente;
 
-public  interface RepositorioGerente {
+public interface RepositorioGerente {
 
-	public  boolean salvarGerente(Gerente gerente); // Assinatura
-	
+	public boolean salvarGerente(Gerente gerente); // Assinatura
+
 	public List<Gerente> listarGerente();
 
 	boolean deletarGerente(String cpf);
+
+	boolean atualizarGerente(Gerente gerente);
+
+	Gerente buscarGerentePorCpf(String cpf);
 }

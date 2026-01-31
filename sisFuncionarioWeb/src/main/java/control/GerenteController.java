@@ -43,10 +43,17 @@ public class GerenteController extends HttpServlet {
 		
 		//para deletar
 				if ("deletar".equals(acao) && cpf != null && !cpf.isEmpty()) {
-		    System.out.println("entrou aqui");
+		    System.out.println("entrou aqui deletar");
 		    repositorioGerenteImplementacao.deletarGerente(cpf);
 		}
+				//para atualizar
+				if ("atualizar".equals(acao) && cpf != null && !cpf.isEmpty()) {
+		    System.out.println("entrou aqui atualizar ");
+		    Gerente gerenteAtualizar = repositorioGerenteImplementacao.buscarGerentePorCpf(cpf);
+		request.setAttribute("gerenteAtualizar", gerenteAtualizar);
 		
+				}
+				
 		request.setAttribute("listarGerente", repositorioGerenteImplementacao.listarGerente());
 		request.getRequestDispatcher("/GerenteCrud.jsp").forward(request, response);
 		
@@ -58,16 +65,25 @@ public class GerenteController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String acao = request.getParameter("acao");
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		  Gerente gerente = new Gerente();
+		RepositorioGerenteImplementacao repositorioGerenteImplementacao = new RepositorioGerenteImplementacao();
+		Gerente gerente = new Gerente();
 		    gerente.setCpf(request.getParameter("cpf"));
 		    gerente.setNome(request.getParameter("nome"));
 		    gerente.setGerencia(request.getParameter("gerencia"));
+		 
 
-		    RepositorioGerenteImplementacao repositorio =
-		            new RepositorioGerenteImplementacao();
-		    repositorio.salvarGerente(gerente);
+		
+		    
+		    if ("atualizar".equals(acao)) {
+		        repositorioGerenteImplementacao.atualizarGerente(gerente);
+		    } else {
+		        repositorioGerenteImplementacao.salvarGerente(gerente);
+		    }
+		   
 
 		    // volta para o formulário
 		    response.sendRedirect(request.getContextPath() + "/GerenteController");
