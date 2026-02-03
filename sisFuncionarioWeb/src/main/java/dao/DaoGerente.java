@@ -193,9 +193,10 @@ public class DaoGerente {
 				preparaComando.setString(2, gerente.getGerencia());
 				preparaComando.setString(3, gerente.getCpf()); // CPF só no WHERE
 
-				preparaComando.executeUpdate();
-				atualizado = true;
-
+				//preparaComando.executeUpdate();
+				//atualizado = true;
+				int linhasAfetadas = preparaComando.executeUpdate();
+				atualizado = linhasAfetadas > 0;
 			} catch (SQLException e) {
 				System.out.println("erro ao atualizar gerente");
 				e.printStackTrace();
