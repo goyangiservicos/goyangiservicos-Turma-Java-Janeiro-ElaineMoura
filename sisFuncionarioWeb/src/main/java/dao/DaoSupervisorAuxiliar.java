@@ -1,10 +1,12 @@
 package dao;
 
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import model.SupervisorAuxiliar;
@@ -17,7 +19,7 @@ public class DaoSupervisorAuxiliar {
 
 		boolean salvamento = false;
 
-		String comandoSqlInsert = "insert into Supervisor_Auxiliar(cpf,nome,patio) values (?,?,?)";
+		String comandoSqlInsert = "insert into Supervisor_Auxiliar(cpf,nome,patio,senha) values (?,?,?,?)";
 
 		FabricaDeConexoes fabricaConexoesSisFuncionario = new FabricaDeConexoes();
 
@@ -32,7 +34,10 @@ public class DaoSupervisorAuxiliar {
 			preparaComando.setString(1, supervisorAuxiliar.getCpf());
 			preparaComando.setString(2, supervisorAuxiliar.getNome());
 			preparaComando.setString(3, supervisorAuxiliar.getPatio());
-
+			preparaComando.setString(4,
+				    Base64.getEncoder()
+				          .encodeToString("123".getBytes(StandardCharsets.UTF_8))
+				);
 			salvamento = true;
 
 			preparaComando.execute();

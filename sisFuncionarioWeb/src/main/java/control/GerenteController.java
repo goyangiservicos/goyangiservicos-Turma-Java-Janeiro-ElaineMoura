@@ -74,7 +74,7 @@ public class GerenteController extends HttpServlet {
 		    gerente.setCpf(request.getParameter("cpf"));
 		    gerente.setNome(request.getParameter("nome"));
 		    gerente.setGerencia(request.getParameter("gerencia"));
-		 
+		   // gerente.setSenha(Double.toString(Math.random())); //testar
 
 		
 		    

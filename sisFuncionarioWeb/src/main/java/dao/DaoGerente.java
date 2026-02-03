@@ -1,10 +1,12 @@
 package dao;
 
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import model.Gerente;
@@ -19,8 +21,8 @@ public class DaoGerente {
 
 		boolean salvamento = false;
 
-		String comandoSqlInsert = "insert into gerente(cpf,nome,gerencia) values (?,?,?)";
-
+		//String comandoSqlInsert = "insert into gerente(cpf,nome,gerencia) values (?,?,?)";
+		String comandoSqlInsert ="insert into gerente(cpf,nome,gerencia,senha) values (?,?,?,?)";
 		FabricaDeConexoes fabricaConexoesSisFuncionario = new FabricaDeConexoes();
 
 		Connection conexaoSisFuncionario = null;
@@ -34,7 +36,13 @@ public class DaoGerente {
 			preparaComando.setString(1, gerente.getCpf());
 			preparaComando.setString(2, gerente.getNome());
 			preparaComando.setString(3, gerente.getGerencia());
-
+			//preparaComando.setString(4, gerente.getSenha());
+			//preparaComando.setString(4, codificar("123")); // senha padrão
+			preparaComando.setString(4,
+				    Base64.getEncoder()
+				          .encodeToString("123".getBytes(StandardCharsets.UTF_8))
+				);
+			
 			salvamento = true;
 
 			preparaComando.execute();
@@ -60,6 +68,8 @@ public class DaoGerente {
 		}
 
 		return salvamento;
+		
+		
 
 		}
 
@@ -230,6 +240,7 @@ public class DaoGerente {
 		            gerente.setCpf(resultado.getString("cpf"));
 		            gerente.setNome(resultado.getString("nome"));
 		            gerente.setGerencia(resultado.getString("gerencia"));
+		            gerente.setSenha(resultado.getString("senha"));
 		        }
 
 		    } catch (SQLException e) {
@@ -254,5 +265,10 @@ public class DaoGerente {
 
 		    return gerente;
 		}
+		
+	//	private String codificar(String texto) {
+		//    return Base64.getEncoder()
+		      //      .encodeToString(texto.getBytes(StandardCharsets.UTF_8));
+		//}
 
 	}

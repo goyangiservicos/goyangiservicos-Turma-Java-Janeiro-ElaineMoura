@@ -11,6 +11,16 @@
 <body>
 	<h2>CRUD - de Gerente</h2>
 
+<%
+Gerente usuario = (Gerente)session.getAttribute("usuarioLogado");
+
+if(usuario ==null){
+	response.sendRedirect("login.jsp");
+	return;
+}
+%>
+
+
 	<%
 	Gerente gerenteAtualizar = (Gerente) request.getAttribute("gerenteAtualizar");
 	boolean editando = (gerenteAtualizar != null);
@@ -20,6 +30,8 @@
 	String gerenciaValue = editando ? gerenteAtualizar.getGerencia() : "";
 	
 	%>
+	
+<h2>Bem vindo, <%=usuario.getNome()%>!</h2>
 <form method="post"
       action="<%=request.getContextPath()%>/GerenteController">
 

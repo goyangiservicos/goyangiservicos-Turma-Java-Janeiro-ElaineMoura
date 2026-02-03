@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.SupervisorAuxiliar" %>
+<%@ page import="model.Gerente" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,9 +8,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Cadastro de Supervisor Auxiliar</title>
+
+<%
+Gerente usuario = (Gerente) session.getAttribute("usuarioLogado");
+
+if(usuario ==null){
+	response.sendRedirect("login.jsp");
+	return;
+}
+%>
 </head>
 <body>
 	<h2>CRUD - de Supervisor Auxiliar</h2>
+<h2>Bem vindo, <%=usuario.getNome()%>!</h2>
 	<form method="post"
 		action="<%=request.getContextPath()%>/SupervisorAuxiliarController">
 		<label>Digite o CPF:</label><br> <input type="text" name="cpf"

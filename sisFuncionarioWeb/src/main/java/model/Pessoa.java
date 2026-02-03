@@ -7,7 +7,7 @@ public class Pessoa {
 	private String nome;
 	private String cpf;
 	private String email;
-	
+	private String senha;
 	
 	public String getNome() {
 		return nome;
@@ -70,6 +70,12 @@ public class Pessoa {
 		    } catch (Exception e) {
 		        return false;
 		    }
+		}
+		public String getSenha() {
+			return senha;
+		}
+		public void setSenha(String senha) {
+			this.senha = senha;
 		}
 		
 		
