@@ -21,8 +21,7 @@ public class FuncionarioTerceirizadoController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RepositorioFuncionarioTerceirizadoImplementacao repositorio =
-				new RepositorioFuncionarioTerceirizadoImplementacao();
+		RepositorioFuncionarioTerceirizadoImplementacao repositorio = new RepositorioFuncionarioTerceirizadoImplementacao();
 
 		String acao = request.getParameter("acao");
 		String cpf = request.getParameter("cpf");
@@ -34,19 +33,14 @@ public class FuncionarioTerceirizadoController extends HttpServlet {
 
 		// BUSCAR PARA ATUALIZAR
 		if ("buscar".equals(acao) && cpf != null && !cpf.isEmpty()) {
-			FuncionarioTerceirizado funcionario =
-					repositorio.buscarFuncionarioTerceirizadoPorCpf(cpf);
+			FuncionarioTerceirizado funcionario = repositorio.buscarFuncionarioTerceirizadoPorCpf(cpf);
 			request.setAttribute("funcionarioAtualizar", funcionario);
 		}
 
 		// LISTAR
-		request.setAttribute(
-				"listaFuncionarioTerceirizado",
-				repositorio.listarFuncionarioTerceirizado()
-		);
+		request.setAttribute("listaFuncionarioTerceirizado", repositorio.listarFuncionarioTerceirizado());
 
-		request.getRequestDispatcher("/FuncionarioTerceirizadoCrud.jsp")
-		       .forward(request, response);
+		request.getRequestDispatcher("/FuncionarioTerceirizadoCrud.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -54,24 +48,16 @@ public class FuncionarioTerceirizadoController extends HttpServlet {
 
 		String acao = request.getParameter("acao");
 
-		RepositorioFuncionarioTerceirizadoImplementacao repositorio =
-				new RepositorioFuncionarioTerceirizadoImplementacao();
+		RepositorioFuncionarioTerceirizadoImplementacao repositorio = new RepositorioFuncionarioTerceirizadoImplementacao();
 
-		FuncionarioTerceirizado funcionarioTerceirizado =
-				new FuncionarioTerceirizado();
+		FuncionarioTerceirizado funcionarioTerceirizado = new FuncionarioTerceirizado();
 
 		funcionarioTerceirizado.setCpf(request.getParameter("cpf"));
 		funcionarioTerceirizado.setNome(request.getParameter("nome"));
-		funcionarioTerceirizado.setDataNascimento(
-				LocalDate.parse(request.getParameter("dataNascimento"))
-		);
-		funcionarioTerceirizado.setFuncao(
-				Funcao.valueOf(request.getParameter("funcao"))
-		);
+		funcionarioTerceirizado.setDataNascimento(LocalDate.parse(request.getParameter("dataNascimento")));
+		funcionarioTerceirizado.setFuncao(Funcao.valueOf(request.getParameter("funcao")));
 		funcionarioTerceirizado.setEmpresa(request.getParameter("empresa"));
-		funcionarioTerceirizado.setHorasTrabalhadas(
-				new BigDecimal(request.getParameter("horasTrabalhadas"))
-		);
+		funcionarioTerceirizado.setHorasTrabalhadas(new BigDecimal(request.getParameter("horasTrabalhadas")));
 
 		if ("atualizar".equals(acao)) {
 			repositorio.atualizarFuncionarioTerceirizado(funcionarioTerceirizado);
@@ -79,8 +65,6 @@ public class FuncionarioTerceirizadoController extends HttpServlet {
 			repositorio.salvarFuncionarioTerceirizado(funcionarioTerceirizado);
 		}
 
-		response.sendRedirect(
-				request.getContextPath() + "/FuncionarioTerceirizadoController"
-		);
+		response.sendRedirect(request.getContextPath() + "/FuncionarioTerceirizadoController");
 	}
 }

@@ -18,207 +18,200 @@ import repository.RepositorioFuncionarioTerceirizadoImplementacao;
 @WebServlet("/FuncionarioTerceirizadoApiController")
 public class FuncionarioTerceirizadoApiController extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private final RepositorioFuncionarioTerceirizadoImplementacao repositorio =
-            new RepositorioFuncionarioTerceirizadoImplementacao();
+	private final RepositorioFuncionarioTerceirizadoImplementacao repositorio = new RepositorioFuncionarioTerceirizadoImplementacao();
 
-    // ================= GET =================
-    // listar todos ou buscar por CPF
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+	// ================= GET =================
+	// listar todos ou buscar por CPF
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-        response.setContentType("application/json; charset=UTF-8");
+		response.setContentType("application/json; charset=UTF-8");
 
-        String cpf = request.getParameter("cpf");
+		String cpf = request.getParameter("cpf");
 
-        if (cpf != null && !cpf.isEmpty()) {
-            FuncionarioTerceirizado f = repositorio.buscarFuncionarioTerceirizadoPorCpf(cpf);
+		if (cpf != null && !cpf.isEmpty()) {
+			FuncionarioTerceirizado f = repositorio.buscarFuncionarioTerceirizadoPorCpf(cpf);
 
-            if (f == null) {
-                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-                response.getWriter().write("{\"ok\":false,\"message\":\"Funcionário não encontrado\"}");
-                return;
-            }
+			if (f == null) {
+				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+				response.getWriter().write("{\"ok\":false,\"message\":\"Funcionário não encontrado\"}");
+				return;
+			}
 
-            response.getWriter().write("{\"ok\":true,\"data\":" + toJson(f) + "}");
-            return;
-        }
+			response.getWriter().write("{\"ok\":true,\"data\":" + toJson(f) + "}");
+			return;
+		}
 
-        List<FuncionarioTerceirizado> lista = repositorio.listarFuncionarioTerceirizado();
-        response.getWriter().write(listaToJson(lista));
-    }
+		List<FuncionarioTerceirizado> lista = repositorio.listarFuncionarioTerceirizado();
+		response.getWriter().write(listaToJson(lista));
+	}
 
-    // ================= POST =================
-    // salvar
-    @Override
-    
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    	String cpf = request.getParameter("cpf");
+	// ================= POST =================
+	// salvar
+	@Override
 
-    	if (cpf == null || cpf.trim().isEmpty() || cpf.length() != 11) {
-    	    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-    	    response.getWriter().write(
-    	        "{\"ok\":false,\"message\":\"CPF é obrigatório e deve ter 11 dígitos\"}"
-    	    );
-    	    return;
-    	}
-        response.setContentType("application/json; charset=UTF-8");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String cpf = request.getParameter("cpf");
 
-        try {
-            FuncionarioTerceirizado f = new FuncionarioTerceirizado();
-            f.setCpf(cpf);
-            f.setNome(request.getParameter("nome"));
-            f.setEmpresa(request.getParameter("empresa"));
-            f.setFuncao(Funcao.valueOf(request.getParameter("funcao")));
-            f.setHorasTrabalhadas(new BigDecimal(request.getParameter("horasTrabalhadas")));
-            f.setDataNascimento(LocalDate.parse(request.getParameter("dataNascimento")));
+		if (cpf == null || cpf.trim().isEmpty() || cpf.length() != 11) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("{\"ok\":false,\"message\":\"CPF é obrigatório e deve ter 11 dígitos\"}");
+			return;
+		}
+		response.setContentType("application/json; charset=UTF-8");
 
-            boolean salvo = repositorio.salvarFuncionarioTerceirizado(f);
+		try {
+			FuncionarioTerceirizado f = new FuncionarioTerceirizado();
+			f.setCpf(cpf);
+			f.setNome(request.getParameter("nome"));
+			f.setEmpresa(request.getParameter("empresa"));
+			f.setFuncao(Funcao.valueOf(request.getParameter("funcao")));
+			f.setHorasTrabalhadas(new BigDecimal(request.getParameter("horasTrabalhadas")));
+			f.setDataNascimento(LocalDate.parse(request.getParameter("dataNascimento")));
 
-            if (salvo) {
-                response.setStatus(HttpServletResponse.SC_CREATED);
-                response.getWriter().write("{\"ok\":true}");
-            } else {
-                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                response.getWriter().write("{\"ok\":false}");
-            }
+			boolean salvo = repositorio.salvarFuncionarioTerceirizado(f);
 
-        } catch (Exception e) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("{\"ok\":false,\"message\":\"Dados inválidos\"}");
-        }
-    }
+			if (salvo) {
+				response.setStatus(HttpServletResponse.SC_CREATED);
+				response.getWriter().write("{\"ok\":true}");
+			} else {
+				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+				response.getWriter().write("{\"ok\":false}");
+			}
 
-    // ================= PUT =================
-    // atualizar
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+		} catch (Exception e) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("{\"ok\":false,\"message\":\"Dados inválidos\"}");
+		}
+	}
 
-        response.setContentType("application/json; charset=UTF-8");
+	// ================= PUT =================
+	// atualizar
+	@Override
+	protected void doPut(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-        String body = request.getReader()
-                .lines()
-                .collect(java.util.stream.Collectors.joining("&"));
+		response.setContentType("application/json; charset=UTF-8");
 
-        String cpf = null;
-        String nome = null;
-        String empresa = null;
-        String funcao = null;
-        String horasTrabalhadas = null;
-        String dataNascimento = null;
+		String body = request.getReader().lines().collect(java.util.stream.Collectors.joining("&"));
 
-        for (String param : body.split("&")) {
-            String[] kv = param.split("=");
-            if (kv.length == 2) {
-                String key = java.net.URLDecoder.decode(kv[0], "UTF-8");
-                String value = java.net.URLDecoder.decode(kv[1], "UTF-8");
+		String cpf = null;
+		String nome = null;
+		String empresa = null;
+		String funcao = null;
+		String horasTrabalhadas = null;
+		String dataNascimento = null;
 
-                if ("cpf".equals(key)) cpf = value;
-                if ("nome".equals(key)) nome = value;
-                if ("empresa".equals(key)) empresa = value;
-                if ("funcao".equals(key)) funcao = value;
-                if ("horasTrabalhadas".equals(key)) horasTrabalhadas = value;
-                if ("dataNascimento".equals(key)) dataNascimento = value;
-            }
-        }
+		for (String param : body.split("&")) {
+			String[] kv = param.split("=");
+			if (kv.length == 2) {
+				String key = java.net.URLDecoder.decode(kv[0], "UTF-8");
+				String value = java.net.URLDecoder.decode(kv[1], "UTF-8");
 
-        // valida CPF
-        if (cpf == null || cpf.trim().isEmpty() || cpf.length() != 11) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write(
-                "{\"ok\":false,\"message\":\"CPF é obrigatório e deve ter 11 dígitos\"}"
-            );
-            return;
-        }
+				if ("cpf".equals(key))
+					cpf = value;
+				if ("nome".equals(key))
+					nome = value;
+				if ("empresa".equals(key))
+					empresa = value;
+				if ("funcao".equals(key))
+					funcao = value;
+				if ("horasTrabalhadas".equals(key))
+					horasTrabalhadas = value;
+				if ("dataNascimento".equals(key))
+					dataNascimento = value;
+			}
+		}
 
-        try {
-            BigDecimal horas = new BigDecimal(horasTrabalhadas);
-            if (horas.compareTo(BigDecimal.ZERO) < 0) {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                response.getWriter().write(
-                    "{\"ok\":false,\"message\":\"Horas trabalhadas não podem ser negativas\"}"
-                );
-                return;
-            }
+		// valida CPF
+		if (cpf == null || cpf.trim().isEmpty() || cpf.length() != 11) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("{\"ok\":false,\"message\":\"CPF é obrigatório e deve ter 11 dígitos\"}");
+			return;
+		}
 
-            FuncionarioTerceirizado f = new FuncionarioTerceirizado();
-            f.setCpf(cpf);
-            f.setNome(nome);
-            f.setEmpresa(empresa);
-            f.setFuncao(Funcao.valueOf(funcao));
-            f.setHorasTrabalhadas(horas);
-            f.setDataNascimento(LocalDate.parse(dataNascimento));
+		try {
+			BigDecimal horas = new BigDecimal(horasTrabalhadas);
+			if (horas.compareTo(BigDecimal.ZERO) < 0) {
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				response.getWriter().write("{\"ok\":false,\"message\":\"Horas trabalhadas não podem ser negativas\"}");
+				return;
+			}
 
-            boolean atualizado = repositorio.atualizarFuncionarioTerceirizado(f);
+			FuncionarioTerceirizado f = new FuncionarioTerceirizado();
+			f.setCpf(cpf);
+			f.setNome(nome);
+			f.setEmpresa(empresa);
+			f.setFuncao(Funcao.valueOf(funcao));
+			f.setHorasTrabalhadas(horas);
+			f.setDataNascimento(LocalDate.parse(dataNascimento));
 
-            if (atualizado) {
-                response.getWriter().write("{\"ok\":true}");
-            } else {
-                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-                response.getWriter().write("{\"ok\":false}");
-            }
+			boolean atualizado = repositorio.atualizarFuncionarioTerceirizado(f);
 
-        } catch (Exception e) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write(
-                "{\"ok\":false,\"message\":\"Dados inválidos\"}"
-            );
-        }
-    }
-    // ================= DELETE =================
-    @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+			if (atualizado) {
+				response.getWriter().write("{\"ok\":true}");
+			} else {
+				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+				response.getWriter().write("{\"ok\":false}");
+			}
 
-        response.setContentType("application/json; charset=UTF-8");
+		} catch (Exception e) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("{\"ok\":false,\"message\":\"Dados inválidos\"}");
+		}
+	}
 
-        String cpf = request.getParameter("cpf");
+	// ================= DELETE =================
+	@Override
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-        if (cpf == null || cpf.isEmpty()) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("{\"ok\":false,\"message\":\"CPF obrigatório\"}");
-            return;
-        }
+		response.setContentType("application/json; charset=UTF-8");
 
-        boolean deletado = repositorio.deletarFuncionarioTerceirizado(cpf);
+		String cpf = request.getParameter("cpf");
 
-        if (deletado) {
-            response.getWriter().write("{\"ok\":true}");
-        } else {
-            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            response.getWriter().write("{\"ok\":false}");
-        }
-    }
+		if (cpf == null || cpf.isEmpty()) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("{\"ok\":false,\"message\":\"CPF obrigatório\"}");
+			return;
+		}
 
-    // ================= JSON =================
-    private String listaToJson(List<FuncionarioTerceirizado> lista) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("{\"ok\":true,\"data\":[");
-        for (int i = 0; i < lista.size(); i++) {
-            sb.append(toJson(lista.get(i)));
-            if (i < lista.size() - 1) sb.append(",");
-        }
-        sb.append("]}");
-        return sb.toString();
-    }
+		boolean deletado = repositorio.deletarFuncionarioTerceirizado(cpf);
 
-    private String toJson(FuncionarioTerceirizado f) {
-        return "{"
-            + "\"cpf\":\"" + esc(f.getCpf()) + "\","
-            + "\"nome\":\"" + esc(f.getNome()) + "\","
-            + "\"funcao\":\"" + f.getFuncao().name() + "\","
-            + "\"empresa\":\"" + esc(f.getEmpresa()) + "\","
-            + "\"horasTrabalhadas\":" + f.getHorasTrabalhadas() + ","
-            + "\"custo\":" + f.getCusto()
-            + "}";
-    }
+		if (deletado) {
+			response.getWriter().write("{\"ok\":true}");
+		} else {
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			response.getWriter().write("{\"ok\":false}");
+		}
+	}
 
-    private String esc(String s) {
-        if (s == null) return "";
-        return s.replace("\\", "\\\\").replace("\"", "\\\"");
-    }
+	// ================= JSON =================
+	private String listaToJson(List<FuncionarioTerceirizado> lista) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("{\"ok\":true,\"data\":[");
+		for (int i = 0; i < lista.size(); i++) {
+			sb.append(toJson(lista.get(i)));
+			if (i < lista.size() - 1)
+				sb.append(",");
+		}
+		sb.append("]}");
+		return sb.toString();
+	}
+
+	private String toJson(FuncionarioTerceirizado f) {
+		return "{" + "\"cpf\":\"" + esc(f.getCpf()) + "\"," + "\"nome\":\"" + esc(f.getNome()) + "\"," + "\"funcao\":\""
+				+ f.getFuncao().name() + "\"," + "\"empresa\":\"" + esc(f.getEmpresa()) + "\","
+				+ "\"horasTrabalhadas\":" + f.getHorasTrabalhadas() + "," + "\"custo\":" + f.getCusto() + "}";
+	}
+
+	private String esc(String s) {
+		if (s == null)
+			return "";
+		return s.replace("\\", "\\\\").replace("\"", "\\\"");
+	}
 }

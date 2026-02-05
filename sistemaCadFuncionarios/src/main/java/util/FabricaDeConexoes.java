@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
-
 public class FabricaDeConexoes {
 	private static String USUARIO = "root";
 	private static String SENHA = "123456";
@@ -32,5 +30,3 @@ public class FabricaDeConexoes {
 		return conexaoBaseDadossis_funcionario;
 	}
 }
-
-

@@ -21,8 +21,7 @@ public class FuncionarioInternoController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RepositorioFuncionarioInternoImplementacao repositorio =
-				new RepositorioFuncionarioInternoImplementacao();
+		RepositorioFuncionarioInternoImplementacao repositorio = new RepositorioFuncionarioInternoImplementacao();
 
 		String acao = request.getParameter("acao");
 		String cpf = request.getParameter("cpf");
@@ -34,19 +33,14 @@ public class FuncionarioInternoController extends HttpServlet {
 
 		// BUSCAR PARA ATUALIZAR
 		if ("buscar".equals(acao) && cpf != null && !cpf.isEmpty()) {
-			FuncionarioInterno funcionario =
-					repositorio.buscarFuncionarioInternoPorCpf(cpf);
+			FuncionarioInterno funcionario = repositorio.buscarFuncionarioInternoPorCpf(cpf);
 			request.setAttribute("funcionarioAtualizar", funcionario);
 		}
 
 		// LISTAR
-		request.setAttribute(
-				"listaFuncionarioInterno",
-				repositorio.listarFuncionarioInterno()
-		);
+		request.setAttribute("listaFuncionarioInterno", repositorio.listarFuncionarioInterno());
 
-		request.getRequestDispatcher("/FuncionarioInternoCrud.jsp")
-		       .forward(request, response);
+		request.getRequestDispatcher("/FuncionarioInternoCrud.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -54,23 +48,16 @@ public class FuncionarioInternoController extends HttpServlet {
 
 		String acao = request.getParameter("acao");
 
-		RepositorioFuncionarioInternoImplementacao repositorio =
-				new RepositorioFuncionarioInternoImplementacao();
+		RepositorioFuncionarioInternoImplementacao repositorio = new RepositorioFuncionarioInternoImplementacao();
 
 		FuncionarioInterno funcionarioInterno = new FuncionarioInterno();
 
 		funcionarioInterno.setCpf(request.getParameter("cpf"));
 		funcionarioInterno.setNome(request.getParameter("nome"));
-		funcionarioInterno.setDataNascimento(
-				LocalDate.parse(request.getParameter("dataNascimento"))
-		);
+		funcionarioInterno.setDataNascimento(LocalDate.parse(request.getParameter("dataNascimento")));
 		funcionarioInterno.setMatricula(request.getParameter("matricula"));
-		funcionarioInterno.setCargo(
-				Cargo.valueOf(request.getParameter("cargo"))
-		);
-		funcionarioInterno.setSalario(
-				new BigDecimal(request.getParameter("salario"))
-		);
+		funcionarioInterno.setCargo(Cargo.valueOf(request.getParameter("cargo")));
+		funcionarioInterno.setSalario(new BigDecimal(request.getParameter("salario")));
 
 		if ("atualizar".equals(acao)) {
 			repositorio.atualizarFuncionarioInterno(funcionarioInterno);

@@ -33,11 +33,11 @@ public class DaoFuncionarioInterno {
 
 			preparaComando.setString(1, funcionarioInterno.getCpf());
 			preparaComando.setString(2, funcionarioInterno.getNome());
-			preparaComando.setDate(3,java.sql.Date.valueOf(funcionarioInterno.getDataNascimento()));
+			preparaComando.setDate(3, java.sql.Date.valueOf(funcionarioInterno.getDataNascimento()));
 			preparaComando.setString(4, funcionarioInterno.getMatricula());
 			preparaComando.setString(5, funcionarioInterno.getCargo().name());
 			preparaComando.setBigDecimal(6, funcionarioInterno.getSalario());
-			preparaComando.setString(7,Base64.getEncoder().encodeToString("123".getBytes(StandardCharsets.UTF_8)));
+			preparaComando.setString(7, Base64.getEncoder().encodeToString("123".getBytes(StandardCharsets.UTF_8)));
 			salvamento = preparaComando.executeUpdate() > 0;
 
 		} catch (SQLException e) {
@@ -209,7 +209,7 @@ public class DaoFuncionarioInterno {
 			preparaComando = conexaoSisFuncionario.prepareStatement(comandoSqlUpdate);
 
 			preparaComando.setString(1, funcionarioInterno.getNome());
-			preparaComando.setDate(2,java.sql.Date.valueOf(funcionarioInterno.getDataNascimento()));
+			preparaComando.setDate(2, java.sql.Date.valueOf(funcionarioInterno.getDataNascimento()));
 			preparaComando.setString(3, funcionarioInterno.getMatricula());
 			preparaComando.setString(4, funcionarioInterno.getCargo().name());
 			preparaComando.setBigDecimal(5, funcionarioInterno.getSalario());

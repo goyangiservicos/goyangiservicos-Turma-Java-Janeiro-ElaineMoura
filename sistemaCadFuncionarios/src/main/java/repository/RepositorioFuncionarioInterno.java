@@ -3,7 +3,6 @@ package repository;
 import java.util.List;
 import model.FuncionarioInterno;
 
-
 public interface RepositorioFuncionarioInterno {
 
 	public boolean salvarFuncionarioInterno(FuncionarioInterno FuncionarioInterno); // Assinatura

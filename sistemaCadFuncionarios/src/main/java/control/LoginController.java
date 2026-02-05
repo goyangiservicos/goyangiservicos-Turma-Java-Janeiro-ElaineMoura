@@ -18,69 +18,64 @@ import repository.RepositorioFuncionarioTerceirizadoImplementacao;
 
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    // LOGOUT
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+	// LOGOUT
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
 
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
-    }
+		response.sendRedirect(request.getContextPath() + "/login.jsp");
+	}
 
-    // LOGIN
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+	// LOGIN
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-        String cpf = request.getParameter("cpf");
-        String senha = request.getParameter("senha");
+		String cpf = request.getParameter("cpf");
+		String senha = request.getParameter("senha");
 
-        HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 
-        // 1️⃣ TENTA FUNCIONÁRIO INTERNO
-        RepositorioFuncionarioInternoImplementacao repoInterno =
-                new RepositorioFuncionarioInternoImplementacao();
+		// 1️⃣ TENTA FUNCIONÁRIO INTERNO
+		RepositorioFuncionarioInternoImplementacao repoInterno = new RepositorioFuncionarioInternoImplementacao();
 
-        FuncionarioInterno interno =
-                repoInterno.buscarFuncionarioInternoPorCpf(cpf);
+		FuncionarioInterno interno = repoInterno.buscarFuncionarioInternoPorCpf(cpf);
 
-        if (interno != null && interno.getSenha() != null) {
-            if (senha.equals(decodificar(interno.getSenha()))) {
-                session.setAttribute("usuarioLogado", interno);
-                response.sendRedirect(request.getContextPath() + "/home.jsp");
-                return;
-            }
-        }
+		if (interno != null && interno.getSenha() != null) {
+			if (senha.equals(decodificar(interno.getSenha()))) {
+				session.setAttribute("usuarioLogado", interno);
+				response.sendRedirect(request.getContextPath() + "/home.jsp");
+				return;
+			}
+		}
 
-        // 2️⃣ TENTA FUNCIONÁRIO TERCEIRIZADO
-        RepositorioFuncionarioTerceirizadoImplementacao repoTerceirizado =
-                new RepositorioFuncionarioTerceirizadoImplementacao();
+		// 2️⃣ TENTA FUNCIONÁRIO TERCEIRIZADO
+		RepositorioFuncionarioTerceirizadoImplementacao repoTerceirizado = new RepositorioFuncionarioTerceirizadoImplementacao();
 
-        FuncionarioTerceirizado terceirizado =
-                repoTerceirizado.buscarFuncionarioTerceirizadoPorCpf(cpf);
+		FuncionarioTerceirizado terceirizado = repoTerceirizado.buscarFuncionarioTerceirizadoPorCpf(cpf);
 
-        if (terceirizado != null && terceirizado.getSenha() != null) {
-            if (senha.equals(decodificar(terceirizado.getSenha()))) {
-                session.setAttribute("usuarioLogado", terceirizado);
-                response.sendRedirect(request.getContextPath() + "/home.jsp");
-                return;
-            }
-        }
+		if (terceirizado != null && terceirizado.getSenha() != null) {
+			if (senha.equals(decodificar(terceirizado.getSenha()))) {
+				session.setAttribute("usuarioLogado", terceirizado);
+				response.sendRedirect(request.getContextPath() + "/home.jsp");
+				return;
+			}
+		}
 
-        // 3️⃣ FALHOU
-        response.sendRedirect(request.getContextPath() + "/erro.jsp");
-    }
+		// 3️⃣ FALHOU
+		response.sendRedirect(request.getContextPath() + "/erro.jsp");
+	}
 
-    private String decodificar(String base64) {
-        byte[] bytes = Base64.getDecoder().decode(base64);
-        return new String(bytes, StandardCharsets.UTF_8);
-    }
-    
-    
+	private String decodificar(String base64) {
+		byte[] bytes = Base64.getDecoder().decode(base64);
+		return new String(bytes, StandardCharsets.UTF_8);
+	}
+
 }
