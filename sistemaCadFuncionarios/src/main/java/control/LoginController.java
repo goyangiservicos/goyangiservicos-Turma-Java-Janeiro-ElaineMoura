@@ -43,7 +43,7 @@ public class LoginController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		// 1️⃣ TENTA FUNCIONÁRIO INTERNO
+		// TENTA FUNCIONÁRIO INTERNO
 		RepositorioFuncionarioInternoImplementacao repoInterno = new RepositorioFuncionarioInternoImplementacao();
 
 		FuncionarioInterno interno = repoInterno.buscarFuncionarioInternoPorCpf(cpf);
@@ -56,7 +56,7 @@ public class LoginController extends HttpServlet {
 			}
 		}
 
-		// 2️⃣ TENTA FUNCIONÁRIO TERCEIRIZADO
+		// TENTA FUNCIONÁRIO TERCEIRIZADO
 		RepositorioFuncionarioTerceirizadoImplementacao repoTerceirizado = new RepositorioFuncionarioTerceirizadoImplementacao();
 
 		FuncionarioTerceirizado terceirizado = repoTerceirizado.buscarFuncionarioTerceirizadoPorCpf(cpf);
@@ -69,7 +69,7 @@ public class LoginController extends HttpServlet {
 			}
 		}
 
-		// 3️⃣ FALHOU
+		//  ERRO
 		response.sendRedirect(request.getContextPath() + "/erro.jsp");
 	}
 

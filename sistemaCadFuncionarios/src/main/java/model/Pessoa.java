@@ -41,7 +41,7 @@ public class Pessoa {
 		this.senha = senha;
 	}
 
-	// Validação básica de CPF
+	// Validaçao basica de CPF
 	public boolean isCpfValido(String cpf) {
 
 		if (cpf == null)

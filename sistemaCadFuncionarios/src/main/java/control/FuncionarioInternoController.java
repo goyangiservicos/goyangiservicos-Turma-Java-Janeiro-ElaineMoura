@@ -42,7 +42,8 @@ public class FuncionarioInternoController extends HttpServlet {
 
 		request.getRequestDispatcher("/FuncionarioInternoCrud.jsp").forward(request, response);
 	}
-
+	
+	// valida se a ação enviada pelo formulário. Se "atualizar", altera um registro, se n cria um novo funcionario Interno.
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

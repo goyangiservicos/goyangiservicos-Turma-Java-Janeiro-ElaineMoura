@@ -33,7 +33,7 @@ public class FuncionarioInterno extends Pessoa {
 		this.salario = salario;
 	}
 
-	// Regra de negócio: PLR = 80% do salario
+	// Regra de negocio: PLR = 80% do salario
 	public BigDecimal getPlr() {
 		if (salario == null) {
 			return BigDecimal.ZERO;

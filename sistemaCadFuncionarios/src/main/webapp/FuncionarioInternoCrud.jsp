@@ -53,13 +53,13 @@ h2, h3 {
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 18px 20px; /* linha / coluna */
+    gap: 18px 20px; 
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 6px; /* espaço ENTRE label e input */
+    gap: 6px; 
 }
 
 .form-full {
